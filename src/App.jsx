@@ -4,8 +4,8 @@ import "./AppStyles.css";
 const produtos = [
   { nome: "Antarctica", preco: "40,00", imagem: "/images/antartica.png" },
   { nome: "Devassa 269ml", preco: "32,00", imagem: "/images/devassa.png" },
-  { nome: "Jack Daniels", preco: "70,00", imagem: "/images/jack.jpg" },
-  { nome: "Vinho Perigole", preco: "28,00", imagem: "/images/vinho.jpg" },
+  { nome: "Jack Daniels", preco: "70,00", imagem: "/images/jackdaniels.png" },
+  { nome: "Vinho Perigole", preco: "28,00", imagem: "/images/vinho.png" },
 ];
 
 const categorias = ["Cervejas", "Naturos", "Destilados", "Vinhos"];
