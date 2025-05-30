@@ -6,7 +6,7 @@ export const produtos = {
     { nome: "Devassa 269ml", preco: "32,00", imagem: "/images/devassa.png", categoria: "Cervejas" },
     { nome: "Heineken Long-Neck", preco: "40,00", imagem: "/images/heinekenlongneck.png", categoria: "Cervejas" },
     { nome: "Heineken 350ml Lata", preco: "60,00", imagem: "/images/heineken350.png", categoria: "Cervejas" },
-    { nome: "Heineken Shot", preco: "60,00", imagem: "/images/heinekenshot.png", categoria: "Cervejas" },
+    { nome: "Heineken Shot", preco: "62,00", imagem: "/images/heinekenshot.png", categoria: "Cervejas" },
     { nome: "Brahma Chopp", preco: "43,00", imagem: "/images/bhrama.png", categoria: "Cervejas" },
     { nome: "Kaiser 350ml", preco: "35,00", imagem: "/images/kaiser.png", categoria: "Cervejas" },
     { nome: "Brahma Duplo Malte", preco: "44,00", imagem: "/images/brahma_dm.png", categoria: "Cervejas" },

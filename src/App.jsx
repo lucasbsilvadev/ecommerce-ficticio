@@ -16,7 +16,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <div className="gradient-header">GELADA</div>
+      <div className="gradient-header">❄️ GELADA 🍻</div>
 
       {/* Menu de categorias com scroll horizontal */}
       <div className="categories-scroll">
