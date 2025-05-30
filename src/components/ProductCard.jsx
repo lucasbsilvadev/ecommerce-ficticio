@@ -1,16 +1,20 @@
 function ProductCard({ nome, preco, imagem }) {
   return (
-    <div className="bg-white rounded-xl p-3 shadow-md w-full sm:w-[48%] product-card">
-      <div className="h-36 w-full overflow-hidden rounded-md">
+    <div className="product-card">
+      <div className="product-image-container">
         <img
           src={imagem}
           alt={nome}
-          className="h-full w-full object-cover"
+          className="product-image"
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = '/images/placeholder.png';
+          }}
         />
       </div>
-      <div className="mt-2 text-center">
-        <h2 className="text-base font-semibold text-gray-800">{nome}</h2>
-        <p className="text-sm text-blue-800 font-bold">R$ {preco}</p>
+      <div className="product-info">
+        <h3 className="product-name">{nome}</h3>
+        <p className="product-price">R$ {preco}</p>
       </div>
     </div>
   );
