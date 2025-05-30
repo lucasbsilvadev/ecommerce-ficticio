@@ -8,9 +8,16 @@
   background-color: #fff;
   border-radius: 1rem;
   padding: 1rem;
-  width: 48%; /* dois por linha */
+
   box-shadow: 0 4px 12px rgba(0,0,0,0.05);
   text-align: center;
+   transition: transform 0.2s ease-in-out;
+
+}
+
+.product-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
 /* Imagens dentro do card */
@@ -56,4 +63,10 @@
   font-size: 1.25rem;
   font-weight: 600;
   margin-bottom: 1rem;
+}
+
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1rem;
 }
