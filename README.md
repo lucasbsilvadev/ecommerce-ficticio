@@ -1,12 +1,6 @@
-# React + Vite
+Proposta de E-Commerce para Distribuidora de Bebidas
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+Neste projeto busquei criar uma solução para o funcionamento do depósito de bebidas do meu irmão, tanto para entregas como atendimento na loja.
+O site exibe o cardápio de produtos, permite filtrar por categoria, permite fazer o pagamento e enviar uma mensagem automatizada com as informações do pedido.
+Na versão ainda não lançada no Deploy utilizei a API do mercado pago com Node para gerar códigos QR Code dinâmicos e permitir o acompanhamento das transações.
+Projeto em fase inicial, pode escalar.
