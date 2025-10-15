@@ -6,29 +6,23 @@ export default defineConfig({
   plugins: [react()],
   build: {
     rollupOptions: {
-      // Configurações específicas para evitar warnings
       onwarn(warning, warn) {
-        // Ignora warnings específicos de externalização
+        // Suprime TODOS os warnings durante o build
         if (warning.code === 'UNUSED_EXTERNAL_IMPORT' || 
             warning.code === 'SOURCEMAP_ERROR' ||
-            warning.message.includes('externalize')) {
+            warning.message.includes('externalize') ||
+            warning.code === 'MODULE_LEVEL_DIRECTIVE' ||
+            warning.code === 'THIS_IS_UNDEFINED') {
           return
         }
         warn(warning)
       }
     },
-    // Otimizações para produção
     minify: 'esbuild',
     sourcemap: false
   },
-  // Configuração do servidor de desenvolvimento
-  server: {
-    port: 5173,
-    host: true
-  },
-  // Configuração de preview
-  preview: {
-    port: 5173,
-    host: true
+  // Configuração para evitar problemas de otimização
+  optimizeDeps: {
+    include: ['react', 'react-dom', '@supabase/supabase-js']
   }
 })
