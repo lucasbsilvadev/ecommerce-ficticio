@@ -3,13 +3,15 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "scripts": {
+ "scripts": {
     "dev": "vite",
     "build": "vite build",
+    "preview": "vite preview",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "vercel-build": "npm run build"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.75.0",
     "json": "^11.0.0",
     "pix-payload": "^1.0.4",
     "qrcode.react": "^4.2.0",

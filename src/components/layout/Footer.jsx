@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom'; // Use se suas páginas forem rotas internas
 
 export default function Footer() {
   const [opaque, setOpaque] = useState(false);
@@ -8,7 +9,6 @@ export default function Footer() {
       const windowHeight = window.innerHeight;
       const docHeight = document.body.offsetHeight;
       const scrollY = window.scrollY;
-      // Se está a menos de 150px do final da página
       setOpaque(scrollY + windowHeight + 150 >= docHeight);
     }
     window.addEventListener('scroll', handleScroll);
@@ -19,10 +19,10 @@ export default function Footer() {
   return (
     <footer className={`footer ${opaque ? 'footer-opaque' : ''}`}>
       <nav>
-        <a href="#">Sobre</a>
-        <a href="#">Contato</a>
-        <a href="#">Instagram</a>
-        <a href="#">Política de Privacidade</a>
+        <Link to="/sobre">Sobre</Link>
+        <Link to="/contato">Contato</Link>
+        <a href="https://instagram.com/seuperfil" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <Link to="/privacidade">Política de Privacidade</Link>
       </nav>
       <p>© {new Date().getFullYear()} Clothing Y2K. Todos os direitos reservados.</p>
     </footer>

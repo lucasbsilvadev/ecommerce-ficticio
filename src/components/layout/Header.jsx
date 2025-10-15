@@ -1,12 +1,12 @@
-// src/components/layout/Header.jsx
 import { useState } from 'react';
 import { useCart } from '../../context/CartContext'; 
 import './Sidebar.css';
-
+import { useNavigate } from 'react-router-dom';
 export default function Header({ onCartClick }) {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [userModal, setUserModal] = useState(false);
   const { cartCount } = useCart();
+  const navigate = useNavigate();
 
   return (
     <>
@@ -41,15 +41,18 @@ export default function Header({ onCartClick }) {
         <aside className="sidebar" onClick={() => setSidebarOpen(false)}>
           <div className="sidebar-content" onClick={e => e.stopPropagation()}>
             <button className="close-btn" onClick={() => setSidebarOpen(false)}>×</button>
-            {/* Navegação superior */}
             <nav className="sidebar-nav">
-              <a href="#">🏠 Início</a>
+              <a href="#" onClick={e => { e.preventDefault(); setSidebarOpen(false); navigate('/'); }}>🏠 Início</a>
               <a href="#">📦 Meus Pedidos</a>
-              <a href="#">⭐ Favoritos</a>
+              <a href="#"
+                 onClick={e => {
+                   e.preventDefault();
+                   setSidebarOpen(false);
+                   navigate('/favoritos');
+                 }}>⭐ Favoritos</a>
               <a href="#">🔥 Promoções</a>
               <a href="#">👤 Cadastro/Login</a>
             </nav>
-            {/* Navegação inferior */}
             <div className="sidebar-bottom">
               <a href="#">📞 Suporte</a>
               <a href="#">⚙️ Configurações</a>
