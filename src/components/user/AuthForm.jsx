@@ -13,7 +13,7 @@ export default function AuthForm({ onClose, onAuthSuccess }) {
     confirmPassword: ''
   });
 
-  const { login, register } = useAuth(); // ← AGORA VAI FUNCIONAR
+  const { login, register } = useAuth();
 
   const handleChange = (e) => {
     setFormData({
@@ -59,7 +59,10 @@ export default function AuthForm({ onClose, onAuthSuccess }) {
 
       if (result.success) {
         onAuthSuccess(result.user);
-        onClose();
+        // Só chama onClose se existir
+        if (onClose) {
+          onClose();
+        }
       } else {
         setError(result.error || 'Erro na autenticação');
       }
@@ -74,7 +77,10 @@ export default function AuthForm({ onClose, onAuthSuccess }) {
   return (
     <div className="auth-modal-overlay">
       <div className="auth-modal">
-        <button className="close-btn" onClick={onClose}>×</button>
+        {/* Mostra botão de fechar apenas se onClose existir */}
+        {onClose && (
+          <button className="close-btn" onClick={onClose}>×</button>
+        )}
         <h2>{isLogin ? 'Login' : 'Cadastro'}</h2>
         
         {error && <div className="error-message">{error}</div>}
