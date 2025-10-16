@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useAuth } from '../../context/AuthContext'; 
-import './AuthForm.css';
+import './authForm.css';
 
 export default function AuthForm({ onClose, onAuthSuccess }) {
   const [isLogin, setIsLogin] = useState(true);
