@@ -1,0 +1,95 @@
+.banner-carousel-section {
+ width: 100%;
+  overflow-x: hidden;
+  padding: 0 0 10px 0;
+  background: transparent;
+}
+
+.banner-title {
+  padding: 0 0 12px 4px;
+}
+
+.banner-title h2 {
+  margin: 0;
+  color: #fff;
+  font-size: 1.2rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+.banner-legend {
+  color: #f4f4f4b6;
+  font-size: 13px;
+  font-weight: 400;
+  margin-left: 1px;
+  display: block;
+  margin-top: 2px;
+  letter-spacing: 0.01em;
+}
+
+.carousel-outer {
+  width: 100%;
+  overflow-x: auto;   /* Deixe o usuário rolar */
+  padding: 0;
+  background: transparent;
+}
+.carousel-outer::-webkit-scrollbar {
+  display: none;
+}
+
+
+.carousel-scroll {
+  display: flex;
+  gap: 18px;
+  width: max-content;
+  overflow-x: scroll;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+}
+.carousel-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.carousel-card {
+  background: #181818;
+  border: 1.2px solid #222;
+  border-radius: 14px;
+  min-width: 120px;
+  max-width: 130px;
+  flex: none;
+  box-shadow: 0 1px 7px rgba(0,0,0,0.16);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 12px 7px 10px 7px;
+  transition: box-shadow 0.18s;
+}
+.carousel-card img {
+  width: 70px;
+  height: 70px;
+  object-fit: contain;
+  border-radius: 9px;
+  margin-bottom: 6px;
+  background: #232323;
+}
+.carousel-info {
+  text-align: center;
+  width: 100%;
+}
+.carousel-name {
+  font-size: 12px;
+  color: #fff;
+  font-weight: 600;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 1.5px;
+}
+.carousel-price {
+  font-size: 14px;
+  color: #fff; /* verde neon ou outra cor que quiser chamar atenção */
+  font-weight: bold;
+}
