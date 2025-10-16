@@ -14,7 +14,7 @@ import CheckoutModal from '../components/cart/CheckoutModal';
 import { shuffleArray } from '../utils/shuffle';
 import { produtos, categorias } from '../data/products';
 import { useCart } from '../context/CartContext';
-import { useAuth } from '../context/authContext'; // ← IMPORT ADICIONADO
+import { useAuth } from '../context/AuthContext'; // ← IMPORT ADICIONADO
 import { api } from '../services/api';
 
 export default function Home() {
@@ -27,7 +27,7 @@ export default function Home() {
   const [address, setAddress] = useState(null);
   const [products, setProducts] = useState([]);
   const [productsLoading, setProductsLoading] = useState(true);
-  const [showAuthForm, setShowAuthForm] = useState(false);
+  const [, setShowAuthForm] = useState(false);
 
   // Carregar produtos (com ou sem autenticação)
   useEffect(() => {
