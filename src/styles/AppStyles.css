@@ -223,7 +223,7 @@ html, body, #root {
 }
 
 .buy-btn {
-  background-color: #4f46e5;
+  background-color: #eee;
   color: white;
 }
 
@@ -261,7 +261,7 @@ html, body, #root {
 }
 
 .copy-btn:hover {
-  background-color: #4338ca;
+  background-color: #eee;
 }
 
 .copy-btn.copied {
@@ -285,7 +285,7 @@ html, body, #root {
   text-align: center;
   padding: 20px;
   font-size: 18px;
-  color: #4f46e5;
+  color: #eee;
 }
 
 .qr-code-container {
@@ -402,7 +402,6 @@ html, body, #root {
   text-align: center;
   font-size: 14px;
   transition: background 0.35s;
-  /* Se quiser, pode dar um leve blur para o transparente ficar top: */
   backdrop-filter: blur(6px);
 }
 .footer-opaque {
@@ -569,4 +568,37 @@ html, body, #root {
   min-width: 16px;
   text-align: center;
   z-index: 2;
+}
+
+/* ProductCard.css */
+.favorite-icon {
+  position: absolute;
+  top: 8px; right: 10px;
+  font-size: 1.5rem;
+  cursor: pointer;
+  user-select: none;
+  z-index: 2;
+  transition: color 0.15s, transform 0.15s;
+}
+.favorite-icon.favorited {
+  color: #f44336;
+  transform: scale(1.2);
+}
+.favorite-icon:not(.favorited):hover {
+  color: #f44336;
+}
+.product-image-container {
+  position: relative;
+}
+
+/* AppStyles.css */
+.page-container {
+  max-width: 450px;
+  margin: 32px auto 0 auto;
+  border-radius: 18px;
+  padding: 18px 12px 32px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
 }

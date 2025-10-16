@@ -1,4 +1,5 @@
-import { useRef, useState } from 'react';
+import { useRef, useState, useEffect } from 'react';
+import AuthForm from '../components/user/AuthForm';
 import Header from '../components/layout/Header';
 import ProductCarousel from '../components/product/ProductCarousel';
 import SearchBar from '../components/common/SearchBar';
@@ -13,20 +14,57 @@ import CheckoutModal from '../components/cart/CheckoutModal';
 import { shuffleArray } from '../utils/shuffle';
 import { produtos, categorias } from '../data/products';
 import { useCart } from '../context/CartContext';
+import { useAuth } from '../context/AuthContext'; // ← IMPORT ADICIONADO
+import { api } from '../services/api';
 
 export default function Home() {
+  const { user, isAuthenticated, loading: authLoading } = useAuth();
   const [categoriaAtiva, setCategoriaAtiva] = useState("Todos");
   const [busca, setBusca] = useState('');
   const [cartOpen, setCartOpen] = useState(false);
   const [addressOpen, setAddressOpen] = useState(false);
   const [checkoutOpen, setCheckoutOpen] = useState(false);
   const [address, setAddress] = useState(null);
+  const [products, setProducts] = useState([]);
+  const [productsLoading, setProductsLoading] = useState(true);
+  const [, setShowAuthForm] = useState(false);
 
-  const todosProdutos = Object.values(produtos).flat();
-  const carouselRef = useRef(shuffleArray(todosProdutos).slice(0, 6));
+  // Carregar produtos (com ou sem autenticação)
+  useEffect(() => {
+    loadProducts();
+  }, []);
+
+  const loadProducts = async () => {
+    try {
+      setProductsLoading(true);
+      
+      // Tenta carregar produtos da API se autenticado
+      if (isAuthenticated) {
+        const result = await api.getProducts();
+        
+        if (result.success && result.products && result.products.length > 0) {
+          setProducts(result.products);
+          setProductsLoading(false);
+          return;
+        }
+      }
+      
+      // Fallback para dados locais
+      setProducts(Object.values(produtos).flat());
+    } catch (error) {
+      console.error('Erro ao carregar produtos:', error);
+      // Fallback para dados locais
+      setProducts(Object.values(produtos).flat());
+    } finally {
+      setProductsLoading(false);
+    }
+  };
+
+  // Produtos para carrossel e grid
+  const carouselRef = useRef(shuffleArray(products).slice(0, 6));
   const maisVendidos = carouselRef.current;
 
-  const produtosFiltrados = todosProdutos.filter(produto =>
+  const produtosFiltrados = products.filter(produto =>
     (categoriaAtiva === "Todos" || produto.categoria === categoriaAtiva) &&
     (busca.trim() === "" || produto.nome.toLowerCase().includes(busca.toLowerCase()))
   );
@@ -37,7 +75,7 @@ export default function Home() {
   // Avança para o modal de endereço
   function handleCheckoutClick() {
     setCartOpen(false);
-    setTimeout(() => setAddressOpen(true), 150); // efeito suave
+    setTimeout(() => setAddressOpen(true), 150);
   }
 
   // Avança para o modal de pagamento
@@ -53,9 +91,48 @@ export default function Home() {
     clearCart();
   }
 
+  // Sucesso na autenticação
+  const handleAuthSuccess = (user) => {
+    console.log('Usuário autenticado:', user);
+    setShowAuthForm(false);
+    // Recarregar produtos após autenticação
+    loadProducts();
+  };
+
+  // Se ainda está carregando a autenticação
+  if (authLoading) {
+    return (
+      <div className="loading-screen">
+        <div className="loading-spinner"></div>
+        <p>Carregando...</p>
+      </div>
+    );
+  }
+
+  // Se não está autenticado, mostrar tela de login
+  if (!isAuthenticated) {
+    return (
+      <div className="auth-screen">
+        <div className="auth-container">
+          <div className="auth-header">
+            <h1>🛍️ Ecommerce</h1>
+            <p>Bem-vindo! Faça login para continuar.</p>
+          </div>
+          <AuthForm 
+            onAuthSuccess={handleAuthSuccess}
+          />
+        </div>
+      </div>
+    );
+  }
+
+  // Usuário autenticado - mostrar home normal
   return (
     <div>
-      <Header onCartClick={() => setCartOpen(true)} />
+      <Header 
+        onCartClick={() => setCartOpen(true)}
+        user={user}
+      />
       <ProductCarousel produtos={maisVendidos} />
       <SearchBar value={busca} onChange={setBusca} />
       <CategoryScroll
@@ -63,12 +140,21 @@ export default function Home() {
         ativa={categoriaAtiva}
         onChange={setCategoriaAtiva}
       />
-      <ProductGrid
-        produtos={produtosFiltrados}
-        categorias={categorias}
-        busca={busca}
-        categoriaAtiva={categoriaAtiva}
-      />
+      
+      {productsLoading ? (
+        <div className="products-loading">
+          <div className="loading-spinner"></div>
+          <p>Carregando produtos...</p>
+        </div>
+      ) : (
+        <ProductGrid
+          produtos={produtosFiltrados}
+          categorias={categorias}
+          busca={busca}
+          categoriaAtiva={categoriaAtiva}
+        />
+      )}
+      
       <ScrollToTopButton />
       <NewsletterBanner />
       <Footer />
