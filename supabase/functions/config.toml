@@ -1,0 +1,17 @@
+[global]
+  project_id = "vcfrfirfjgddjoimvbyn"
+
+[auth]
+  enable_signup = true
+  site_url = "http://localhost:3000"
+  additional_redirect_urls = []
+
+[api]
+  port = 54321
+
+[storage]
+  file_size_limit = 52428800
+
+[functions]
+  products_slug = "products"
+  auth_slug = "auth"
