@@ -1,0 +1,215 @@
+/* ==============================
+   Auth Form Styles - Desktop + Mobile Refinado
+   ============================== */
+
+.auth-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+  padding: 1.5rem;
+  backdrop-filter: blur(3px);
+}
+
+.auth-modal {
+  background: #fff;
+  border-radius: 16px;
+  padding: 3rem 3.5rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 500px;
+  position: relative;
+  animation: fadeInUp 0.3s ease;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.auth-modal h2 {
+  text-align: center;
+  margin-bottom: 2rem;
+  color: #111;
+  font-size: 2rem;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
+
+/* Botão de fechar */
+.close-btn {
+  position: absolute;
+  top: 1.2rem;
+  right: 1.2rem;
+  background: transparent;
+  border: none;
+  font-size: 2rem;
+  color: #888;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+
+.close-btn:hover {
+  color: #333;
+}
+
+/* ==============================
+   Feedback de erro
+   ============================== */
+.error-message {
+  background: #ffebee;
+  color: #c62828;
+  padding: 0.9rem 1.1rem;
+  border-radius: 8px;
+  margin-bottom: 1.3rem;
+  border: 1px solid #ffcdd2;
+  font-size: 0.95rem;
+  animation: shake 0.3s ease;
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+
+/* ==============================
+   Inputs e Labels
+   ============================== */
+.form-group {
+  margin-bottom: 1.6rem;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #222;
+  font-weight: 600;
+  font-size: 1rem;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 1rem 1.2rem;
+  border: 1.5px solid #ddd;
+  border-radius: 12px;
+  font-size: 1.05rem;
+  transition: border-color 0.2s, box-shadow 0.2s, transform 0.1s;
+  background: #fff;
+}
+
+.form-group input:hover {
+  border-color: #ccc;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #111;
+  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.1);
+  transform: scale(1.01);
+}
+
+.form-group input::placeholder {
+  color: #999;
+}
+
+/* ==============================
+   Botão principal
+   ============================== */
+.submit-btn {
+  width: 100%;
+  background: #111;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 1rem;
+  font-size: 1.05rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.18s, transform 0.1s, box-shadow 0.2s;
+  margin-top: 0.8rem;
+}
+
+.submit-btn:hover:not(:disabled) {
+  background: #181818;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.submit-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+/* ==============================
+   Alternador (Login / Cadastro)
+   ============================== */
+.auth-switch {
+  text-align: center;
+  margin-top: 2rem;
+  padding-top: 1.4rem;
+  border-top: 1px solid #eee;
+}
+
+.auth-switch p {
+  color: #666;
+  margin: 0;
+  font-size: 1rem;
+}
+
+.switch-btn {
+  background: none;
+  border: none;
+  color: #111;
+  cursor: pointer;
+  font-weight: 600;
+  margin-left: 0.4rem;
+  font-size: 1rem;
+  text-decoration: underline;
+  transition: color 0.2s;
+}
+
+.switch-btn:hover {
+  color: #333;
+}
+
+/* ==============================
+   Responsividade
+   ============================== */
+@media (max-width: 768px) {
+  .auth-modal {
+    max-width: 400px;
+    padding: 2.2rem;
+  }
+
+  .form-group input {
+    padding: 0.9rem 1rem;
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .auth-modal {
+    padding: 1.8rem;
+    border-radius: 12px;
+    max-width: 90%;
+  }
+
+  .auth-modal h2 {
+    font-size: 1.6rem;
+  }
+
+  .form-group input {
+    padding: 0.8rem 1rem;
+    font-size: 0.95rem;
+  }
+
+  .submit-btn {
+    font-size: 0.95rem;
+    padding: 0.8rem;
+  }
+}
