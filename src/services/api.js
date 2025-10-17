@@ -1,4 +1,4 @@
-// services/api.js - VERSÃO PRODUÇÃO/DEV
+// services/api.js - VERSÃO COMPLETA E CORRIGIDA
 class ApiService {
   constructor() {
     // Configuração robusta para dev e prod
@@ -138,6 +138,68 @@ class ApiService {
         id
       })
     });
+  }
+
+  // Address endpoints
+  async getAddresses() {
+    return this.request('/addresses', {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'getAddresses'
+      })
+    });
+  }
+
+  async createAddress(addressData) {
+    return this.request('/addresses', {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'createAddress',
+        ...addressData
+      })
+    });
+  }
+
+  async updateAddress(addressData) {
+    return this.request('/addresses', {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'updateAddress',
+        ...addressData
+      })
+    });
+  }
+
+  async deleteAddress(addressId) {
+    return this.request('/addresses', {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'deleteAddress',
+        id: addressId
+      })
+    });
+  }
+
+  async setDefaultAddress(addressId) {
+    return this.request('/addresses', {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'setDefaultAddress',
+        id: addressId
+      })
+    });
+  }
+
+  // CEP lookup endpoint - AGORA DENTRO DA CLASSE!
+  async lookupCep(cep) {
+    const cepLimpo = cep.replace(/\D/g, '');
+    const response = await fetch(`${this.FUNCTIONS_URL}/cep-lookup?cep=${cepLimpo}`);
+    
+    if (!response.ok) {
+      throw new Error(`Erro ao buscar CEP: ${response.status}`);
+    }
+    
+    return response.json();
   }
 }
 

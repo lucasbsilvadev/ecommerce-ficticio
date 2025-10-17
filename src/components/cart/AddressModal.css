@@ -1,66 +1,184 @@
-.address-modal {
-  background: #fff;
-  border-radius: 16px;
-  padding: 28px 24px 18px 24px;
-  min-width: 330px;
-  max-width: 94vw;
-  box-shadow: 0 8px 40px #0003;
+/* AddressModal.css */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
   display: flex;
-  flex-direction: column;
-  gap: 14px;
-  align-items: stretch;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
 }
+
+.address-modal {
+  background: white;
+  padding: 2rem;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 500px;
+  max-height: 90vh;
+  overflow-y: auto;
+}
+
 .address-modal h2 {
-  font-size: 1.3rem;
-  margin-bottom: 14px;
-  text-align: left;
-  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #333;
+  text-align: center;
 }
+
+.address-suggestion {
+  background: #f8f9fa;
+  padding: 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  border-left: 4px solid #007bff;
+}
+
+.suggestion-card {
+  margin-top: 0.5rem;
+}
+
+.suggestion-btn {
+  background: #007bff;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 0.5rem;
+}
+
+.suggestion-btn:hover {
+  background: #0056b3;
+}
+
 .address-fields {
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 1rem;
 }
-.address-fields input {
-  border: 1.3px solid #ddd;
-  border-radius: 7px;
-  padding: 9px 11px;
-  font-size: 1rem;
-  outline: none;
-  transition: border 0.16s;
-}
-.address-fields input:focus {
-  border-color: #30d158;
-}
-.address-actions {
+
+.form-group {
   display: flex;
-  justify-content: space-between;
-  gap: 10px;
-  margin-top: 14px;
+  flex-direction: column;
 }
-.buy-btn, .outline {
+
+.form-group label {
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+  color: #555;
+}
+
+.form-group input {
+  padding: 0.75rem;
+  border: 2px solid #e1e5e9;
   border-radius: 8px;
   font-size: 1rem;
-  padding: 8px 16px;
+  transition: border-color 0.3s;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.form-row {
+  display: flex;
+  gap: 1rem;
+}
+
+.form-row .form-group {
+  flex: 1;
+}
+
+.address-actions {
+  display: flex;
+  gap: 1rem;
+  margin-top: 2rem;
+  justify-content: flex-end;
+}
+
+.address-actions button {
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
   font-weight: 600;
   cursor: pointer;
-  border: none;
-  transition: background 0.15s, color 0.15s, border 0.15s;
+  transition: all 0.3s;
 }
+
 .buy-btn {
-  background: #222;
-  color: #fff;
+  background: #007bff;
+  color: white;
+  border: none;
 }
-.buy-btn:hover {
-  background: #30d158;
-  color: #111;
+
+.buy-btn:hover:not(:disabled) {
+  background: #0056b3;
 }
+
+.buy-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
+}
+
 .outline {
-  background: none;
-  border: 1.4px solid #ddd;
-  color: #222;
+  background: white;
+  color: #666;
+  border: 2px solid #e1e5e9;
 }
-.outline:hover {
-  border-color: #30d158;
-  color: #30d158;
+
+.outline:hover:not(:disabled) {
+  border-color: #007bff;
+  color: #007bff;
+}
+
+.loading-text {
+  color: #007bff;
+  font-size: 0.8rem;
+  font-style: italic;
+  margin-left: 8px;
+}
+
+.form-group input:disabled {
+  background-color: #f8f9fa;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+
+.address-suggestion {
+  background: #e8f5e8;
+  border: 1px solid #4caf50;
+  border-radius: 8px;
+  padding: 1rem;
+  margin-bottom: 1rem;
+}
+
+.address-suggestion p {
+  margin: 0 0 8px 0;
+  font-weight: 500;
+  color: #2e7d32;
+}
+
+.suggestion-card {
+  background: white;
+  padding: 12px;
+  border-radius: 6px;
+  border: 1px solid #c8e6c9;
+}
+
+.suggestion-btn {
+  background: #4caf50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-top: 8px;
+  font-size: 0.9rem;
+}
+
+.suggestion-btn:hover {
+  background: #45a049;
 }
