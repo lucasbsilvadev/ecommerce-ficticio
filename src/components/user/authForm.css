@@ -2,27 +2,59 @@
    Auth Form Styles - Desktop + Mobile Refinado
    ============================== */
 
+/* ==============================
+   Theme tokens - Streetwear / Y2K
+   ============================== */
+:root {
+  --bg-overlay: rgba(8, 8, 8, 0.65);
+  --glass-bg: rgba(255, 255, 255, 0.9);
+  --glass-border: rgba(255, 255, 255, 0.55);
+  --text-primary: #111111;
+  --text-secondary: #6b7280;
+  --brand-1: #8b5cf6; /* purple */
+  --brand-2: #22d3ee; /* cyan */
+  --brand-3: #f472b6; /* pink */
+  --brand-neon: #a7f3d0; /* mint */
+  --danger-bg: #ffebee;
+  --danger-text: #c62828;
+  --danger-border: #ffcdd2;
+  --focus-ring: rgba(139, 92, 246, 0.25);
+}
+
 .auth-modal-overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: var(--bg-overlay);
   display: flex;
   justify-content: center;
   align-items: center;
   z-index: 1000;
   padding: 1.5rem;
-  backdrop-filter: blur(3px);
+  backdrop-filter: blur(6px) saturate(120%);
 }
 
 .auth-modal {
-  background: #fff;
-  border-radius: 16px;
-  padding: 3rem 3.5rem;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  background: var(--glass-bg);
+  border-radius: 18px;
+  padding: 2.4rem 2.6rem;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.2);
   width: 100%;
   max-width: 500px;
   position: relative;
   animation: fadeInUp 0.3s ease;
+  border: 1px solid var(--glass-border);
+}
+
+/* Gradient border halo */
+.auth-modal::before {
+  content: '';
+  position: absolute;
+  inset: -2px;
+  border-radius: 20px;
+  background: conic-gradient(from 180deg at 50% 50%, var(--brand-1), var(--brand-2), var(--brand-3), var(--brand-1));
+  filter: blur(12px) saturate(130%);
+  opacity: 0.28;
+  z-index: -1;
 }
 
 @keyframes fadeInUp {
@@ -30,14 +62,58 @@
   to { opacity: 1; transform: translateY(0); }
 }
 
-.auth-modal h2 {
-  text-align: center;
-  margin-bottom: 2rem;
-  color: #111;
-  font-size: 2rem;
-  font-weight: 700;
-  letter-spacing: -0.5px;
+.auth-header { text-align: center; }
+.auth-title {
+  position: relative;
+  display: inline-block;
+  margin: 10px 0 6px 0;
+  color: var(--text-primary);
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.02em;
 }
+.title-glow {
+  position: absolute;
+  inset: -4px -10px;
+  border-radius: 16px;
+  background: radial-gradient(60% 60% at 50% 50%, rgba(167, 243, 208, 0.35), transparent 70%),
+              radial-gradient(60% 60% at 60% 20%, rgba(139, 92, 246, 0.25), transparent 70%);
+  filter: blur(14px);
+  z-index: -1;
+}
+.auth-subtitle { color: var(--text-secondary); margin: 0 0 1rem 0; }
+
+/* Pill toggle */
+.auth-pill-toggle {
+  background: rgba(17, 17, 17, 0.06);
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  display: inline-flex;
+  border-radius: 999px;
+  padding: 6px;
+  gap: 6px;
+  position: relative;
+}
+.auth-pill-toggle .pill {
+  position: relative;
+  z-index: 1;
+  border: none;
+  background: transparent;
+  color: var(--text-primary);
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 999px;
+  cursor: pointer;
+}
+.auth-pill-toggle .pill-indicator {
+  position: absolute;
+  top: 4px; bottom: 4px;
+  width: calc(50% - 8px);
+  border-radius: 999px;
+  background: linear-gradient(90deg, var(--brand-1), var(--brand-2));
+  transition: transform 0.25s ease;
+}
+.auth-pill-toggle .pill-indicator.left { transform: translateX(4px); }
+.auth-pill-toggle .pill-indicator.right { transform: translateX(calc(100% + 4px)); }
 
 /* Botão de fechar */
 .close-btn {
@@ -60,12 +136,12 @@
    Feedback de erro
    ============================== */
 .error-message {
-  background: #ffebee;
-  color: #c62828;
+  background: var(--danger-bg);
+  color: var(--danger-text);
   padding: 0.9rem 1.1rem;
   border-radius: 8px;
   margin-bottom: 1.3rem;
-  border: 1px solid #ffcdd2;
+  border: 1px solid var(--danger-border);
   font-size: 0.95rem;
   animation: shake 0.3s ease;
 }
@@ -86,15 +162,16 @@
 .form-group label {
   display: block;
   margin-bottom: 0.5rem;
-  color: #222;
+  color: var(--text-primary);
   font-weight: 600;
   font-size: 1rem;
 }
 
+.auth-form { margin-top: 0.5rem; }
 .form-group input {
   width: 100%;
   padding: 1rem 1.2rem;
-  border: 1.5px solid #ddd;
+  border: 1.5px solid rgba(17, 17, 17, 0.12);
   border-radius: 12px;
   font-size: 1.05rem;
   transition: border-color 0.2s, box-shadow 0.2s, transform 0.1s;
@@ -107,8 +184,8 @@
 
 .form-group input:focus {
   outline: none;
-  border-color: #111;
-  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.1);
+  border-color: var(--brand-1);
+  box-shadow: 0 0 0 3px var(--focus-ring);
   transform: scale(1.01);
 }
 
@@ -119,9 +196,25 @@
 /* ==============================
    Botão principal
    ============================== */
+.password-group .password-input-wrap {
+  position: relative;
+}
+.toggle-password {
+  position: absolute;
+  right: 8px;
+  top: 50%;
+  transform: translateY(-50%);
+  border: 1px solid rgba(17, 17, 17, 0.08);
+  background: #fff;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  cursor: pointer;
+}
+
 .submit-btn {
   width: 100%;
-  background: #111;
+  background: linear-gradient(90deg, var(--brand-1), var(--brand-2));
   color: #fff;
   border: none;
   border-radius: 30px;
@@ -129,12 +222,12 @@
   font-size: 1.05rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.18s, transform 0.1s, box-shadow 0.2s;
+  transition: transform 0.1s, box-shadow 0.2s, filter 0.2s;
   margin-top: 0.8rem;
 }
 
 .submit-btn:hover:not(:disabled) {
-  background: #181818;
+  filter: brightness(1.05);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -156,7 +249,7 @@
 }
 
 .auth-switch p {
-  color: #666;
+  color: var(--text-secondary);
   margin: 0;
   font-size: 1rem;
 }
@@ -177,13 +270,36 @@
   color: #333;
 }
 
+/* Divider */
+.auth-divider {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 16px 0 6px 0;
+}
+.auth-divider span { flex: 1; height: 1px; background: rgba(17,17,17,0.1); }
+.auth-divider em { color: var(--text-secondary); font-style: normal; font-size: 0.9rem; }
+
+/* Social login */
+.social-login { margin-top: 10px; }
+.social-btn {
+  width: 100%;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  background: #fff;
+  color: #111;
+  padding: 0.85rem 1rem;
+  border-radius: 12px;
+  cursor: not-allowed;
+}
+.
+
 /* ==============================
    Responsividade
    ============================== */
 @media (max-width: 768px) {
   .auth-modal {
-    max-width: 400px;
-    padding: 2.2rem;
+    max-width: 420px;
+    padding: 2rem;
   }
 
   .form-group input {
@@ -194,9 +310,9 @@
 
 @media (max-width: 480px) {
   .auth-modal {
-    padding: 1.8rem;
-    border-radius: 12px;
-    max-width: 90%;
+    padding: 1.6rem;
+    border-radius: 14px;
+    max-width: 92%;
   }
 
   .auth-modal h2 {
