@@ -3,22 +3,22 @@
    ============================== */
 
 /* ==============================
-   Theme tokens - Streetwear / Y2K
+   Theme tokens - Minimalista Preto e Branco
    ============================== */
 :root {
   --bg-overlay: rgba(8, 8, 8, 0.65);
-  --glass-bg: rgba(255, 255, 255, 0.9);
-  --glass-border: rgba(255, 255, 255, 0.55);
+  --glass-bg: rgba(255, 255, 255, 0.95);
+  --glass-border: rgba(255, 255, 255, 0.7);
   --text-primary: #111111;
-  --text-secondary: #6b7280;
-  --brand-1: #8b5cf6; /* purple */
-  --brand-2: #22d3ee; /* cyan */
-  --brand-3: #f472b6; /* pink */
-  --brand-neon: #a7f3d0; /* mint */
-  --danger-bg: #ffebee;
-  --danger-text: #c62828;
-  --danger-border: #ffcdd2;
-  --focus-ring: rgba(139, 92, 246, 0.25);
+  --text-secondary: #666666;
+  --brand-1: #000000; /* preto */
+  --brand-2: #333333; /* cinza escuro */
+  --brand-3: #666666; /* cinza médio */
+  --brand-neon: #f0f0f0; /* cinza claro */
+  --danger-bg: #f5f5f5;
+  --danger-text: #000000;
+  --danger-border: #ddd;
+  --focus-ring: rgba(0, 0, 0, 0.15);
 }
 
 .auth-modal-overlay {
@@ -45,15 +45,15 @@
   border: 1px solid var(--glass-border);
 }
 
-/* Gradient border halo */
+/* Gradient border halo - agora em preto e branco */
 .auth-modal::before {
   content: '';
   position: absolute;
   inset: -2px;
   border-radius: 20px;
-  background: conic-gradient(from 180deg at 50% 50%, var(--brand-1), var(--brand-2), var(--brand-3), var(--brand-1));
+  background: conic-gradient(from 180deg at 50% 50%, #000000, #333333, #666666, #000000);
   filter: blur(12px) saturate(130%);
-  opacity: 0.28;
+  opacity: 0.15;
   z-index: -1;
 }
 
@@ -76,17 +76,18 @@
   position: absolute;
   inset: -4px -10px;
   border-radius: 16px;
-  background: radial-gradient(60% 60% at 50% 50%, rgba(167, 243, 208, 0.35), transparent 70%),
-              radial-gradient(60% 60% at 60% 20%, rgba(139, 92, 246, 0.25), transparent 70%);
+  background: radial-gradient(60% 60% at 50% 50%, rgba(240, 240, 240, 0.5), transparent 70%),
+              radial-gradient(60% 60% at 60% 20%, rgba(0, 0, 0, 0.2), transparent 70%);
   filter: blur(14px);
   z-index: -1;
 }
 .auth-subtitle { color: var(--text-secondary); margin: 0 0 1rem 0; }
 
-/* Pill toggle */
+/* Pill toggle - agora em preto e branco */
 .auth-pill-toggle {
   background: rgba(17, 17, 17, 0.06);
-  border: 1px solid rgba(17, 17, 17, 0.08);
+  border: 1px solid rgba(17, 17, 17, 0.12);
+
   display: inline-flex;
   border-radius: 999px;
   padding: 6px;
@@ -98,10 +99,10 @@
   z-index: 1;
   border: none;
   background: transparent;
-  color: var(--text-primary);
   font-weight: 700;
   padding: 8px 16px;
-  border-radius: 999px;
+  border-radius: 999px; 
+  color: #fff;
   cursor: pointer;
 }
 .auth-pill-toggle .pill-indicator {
@@ -109,7 +110,7 @@
   top: 4px; bottom: 4px;
   width: calc(50% - 8px);
   border-radius: 999px;
-  background: linear-gradient(90deg, var(--brand-1), var(--brand-2));
+ background: var(--text-primary);
   transition: transform 0.25s ease;
 }
 .auth-pill-toggle .pill-indicator.left { transform: translateX(4px); }
@@ -169,9 +170,9 @@
 
 .auth-form { margin-top: 0.5rem; }
 .form-group input {
-  width: 100%;
+  
   padding: 1rem 1.2rem;
-  border: 1.5px solid rgba(17, 17, 17, 0.12);
+  border: 1.5px solid rgba(17, 17, 17, 0.15);
   border-radius: 12px;
   font-size: 1.05rem;
   transition: border-color 0.2s, box-shadow 0.2s, transform 0.1s;
@@ -179,7 +180,7 @@
 }
 
 .form-group input:hover {
-  border-color: #ccc;
+  border-color: #999;
 }
 
 .form-group input:focus {
@@ -204,17 +205,18 @@
   right: 8px;
   top: 50%;
   transform: translateY(-50%);
-  border: 1px solid rgba(17, 17, 17, 0.08);
+  border: 1px solid rgba(17, 17, 17, 0.15);
   background: #fff;
   padding: 6px 10px;
   border-radius: 10px;
   font-size: 0.85rem;
   cursor: pointer;
+  color: var(--text-primary);
 }
 
 .submit-btn {
   width: 100%;
-  background: linear-gradient(90deg, var(--brand-1), var(--brand-2));
+  background: var(--text-primary);
   color: #fff;
   border: none;
   border-radius: 30px;
@@ -227,7 +229,7 @@
 }
 
 .submit-btn:hover:not(:disabled) {
-  filter: brightness(1.05);
+  filter: brightness(1.1);
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
@@ -245,7 +247,7 @@
   text-align: center;
   margin-top: 2rem;
   padding-top: 1.4rem;
-  border-top: 1px solid #eee;
+  border-top: 1px solid rgba(17, 17, 17, 0.1);
 }
 
 .auth-switch p {
@@ -257,7 +259,7 @@
 .switch-btn {
   background: none;
   border: none;
-  color: #111;
+  /* color: var(--text-primary); */
   cursor: pointer;
   font-weight: 600;
   margin-left: 0.4rem;
@@ -267,7 +269,7 @@
 }
 
 .switch-btn:hover {
-  color: #333;
+  color: var(--brand-2);
 }
 
 /* Divider */
@@ -284,14 +286,14 @@
 .social-login { margin-top: 10px; }
 .social-btn {
   width: 100%;
-  border: 1px solid rgba(17, 17, 17, 0.12);
+  border: 1px solid rgba(17, 17, 17, 0.15);
   background: #fff;
-  color: #111;
+  color: var(--text-primary);
   padding: 0.85rem 1rem;
   border-radius: 12px;
   cursor: not-allowed;
+  font-weight: 500;
 }
-.
 
 /* ==============================
    Responsividade

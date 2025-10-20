@@ -105,7 +105,7 @@ export default function AuthForm({ onClose, onAuthSuccess }) {
             <span className={`pill-indicator ${isLogin ? 'left' : 'right'}`} aria-hidden="true" />
           </div>
           <h2 className="auth-title">
-            {isLogin ? 'Bem-vinde de volta' : 'Crie sua conta'}
+            {isLogin ? 'Bem-vindotitle-glow de volta' : 'Crie sua conta'}
             <span className="title-glow" />
           </h2>
           <p className="auth-subtitle">Streetwear · Y2K · Drops exclusivos</p>
