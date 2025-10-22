@@ -36,48 +36,59 @@ class ApiService {
   }
 
   async request(endpoint, options = {}) {
-    if (!this.FUNCTIONS_URL) {
-      throw new Error('URL das functions não configurada.');
-    }
-
-    const url = `${this.FUNCTIONS_URL}${endpoint}`;
-    console.log('🌐 Fazendo requisição para:', url);
-    
-    const config = {
-      headers: {
-        'Content-Type': 'application/json',
-        ...options.headers,
-      },
-      ...options,
-    };
-
-    if (this.token) {
-      config.headers.Authorization = `Bearer ${this.token}`;
-    }
-
-    try {
-      const response = await fetch(url, config);
-      
-      if (!response.ok) {
-        const errorText = await response.text();
-        console.error('❌ Erro HTTP:', response.status, errorText);
-        throw new Error(`Erro ${response.status}: ${errorText}`);
-      }
-
-      const data = await response.json();
-      return data;
-    } catch (error) {
-      console.error('❌ API Request failed:', error);
-      
-      // Erro mais amigável para o usuário
-      if (error.message.includes('Failed to fetch')) {
-        throw new Error('Erro de conexão. Verifique sua internet.');
-      }
-      
-      throw error;
-    }
+  if (!this.FUNCTIONS_URL) {
+    throw new Error('URL das functions não configurada.');
   }
 
+  const url = `${this.FUNCTIONS_URL}${endpoint}`;
+  console.log('🌐 Fazendo requisição para:', url);
+  
+  const config = {
+    headers: {
+      'Content-Type': 'application/json',
+      ...options.headers,
+    },
+    ...options,
+  };
+
+  // 🔥 CORREÇÃO CRÍTICA: Não enviar token para login/register
+  try {
+    const bodyData = options.body ? JSON.parse(options.body) : {};
+    const isPublicAction = bodyData.action === 'login' || bodyData.action === 'register';
+    
+    // Só adiciona token se NÃO for uma ação pública E se tiver token
+    if (this.token && !isPublicAction) {
+      config.headers.Authorization = `Bearer ${this.token}`;
+      console.log('🔐 Enviando token para ação protegida:', bodyData.action);
+    } else if (isPublicAction) {
+      console.log('🔓 Ação pública, sem token:', bodyData.action);
+    }
+  } catch (error) {
+    console.warn('⚠️ Não foi possível analisar body da requisição');
+  }
+
+  try {
+    const response = await fetch(url, config);
+    
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error('❌ Erro HTTP:', response.status, errorText);
+      throw new Error(`Erro ${response.status}: ${errorText}`);
+    }
+
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.error('❌ API Request failed:', error);
+    
+    // Erro mais amigável para o usuário
+    if (error.message.includes('Failed to fetch')) {
+      throw new Error('Erro de conexão. Verifique sua internet.');
+    }
+    
+    throw error;
+  }
+}
   // Auth endpoints
   async login(credentials) {
     return this.request('/auth', {
