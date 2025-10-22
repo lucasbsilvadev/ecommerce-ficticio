@@ -1,3 +1,4 @@
+// context/AuthContext.js - VERSÃO CORRIGIDA
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { api } from '../services/api';
 
@@ -22,20 +23,32 @@ export function AuthProvider({ children }) {
   const checkAuth = async () => {
     try {
       const token = localStorage.getItem('authToken');
-      if (token) {
+      const savedUser = localStorage.getItem('user');
+      
+      if (token && savedUser) {
+        // ✅ PRIMEIRO: Restaura o usuário do localStorage
+        const userData = JSON.parse(savedUser);
+        setUser(userData);
         api.setToken(token);
-        const result = await api.getProfile();
-        if (result.success) {
-          setUser(result.user);
-          // Também salva no localStorage para consistência
-          localStorage.setItem('user', JSON.stringify(result.user));
-        } else {
-          handleLogout();
+        
+        // ✅ DEPOIS: Tenta atualizar do servidor (mas não bloqueia se falhar)
+        try {
+          const result = await api.getProfile();
+          if (result.success) {
+            setUser(result.user);
+            localStorage.setItem('user', JSON.stringify(result.user));
+          }
+        } catch (profileError) {
+          console.warn('⚠️ Não foi possível atualizar perfil do servidor:', profileError.message);
+          // Não faz logout - mantém o usuário do localStorage
         }
+      } else {
+        // ❌ Não tem token ou usuário salvo
+        handleLogout();
       }
     } catch (error) {
       console.error('Auth check failed:', error);
-      handleLogout();
+      // Não faz logout automático - deixa o usuário tentar login manualmente
     } finally {
       setLoading(false);
     }
@@ -50,24 +63,32 @@ export function AuthProvider({ children }) {
 
   const login = async (credentials) => {
     try {
+      console.log('🔐 Tentando login...');
       const result = await api.login(credentials);
+      
       if (result.success) {
+        console.log('✅ Login bem-sucedido');
         api.setToken(result.token);
         setUser(result.user);
         localStorage.setItem('user', JSON.stringify(result.user));
         return { success: true, user: result.user };
       } else {
+        console.log('❌ Login falhou:', result.error);
         return { success: false, error: result.error };
       }
     } catch (error) {
+      console.error('❌ Erro no login:', error);
       return { success: false, error: error.message };
     }
   };
 
   const register = async (userData) => {
     try {
+      console.log('👤 Tentando registro...');
       const result = await api.register(userData);
+      
       if (result.success) {
+        console.log('✅ Registro bem-sucedido');
         if (result.token) {
           api.setToken(result.token);
           localStorage.setItem('user', JSON.stringify(result.user));
@@ -75,9 +96,11 @@ export function AuthProvider({ children }) {
         setUser(result.user);
         return { success: true, user: result.user };
       } else {
+        console.log('❌ Registro falhou:', result.error);
         return { success: false, error: result.error };
       }
     } catch (error) {
+      console.error('❌ Erro no registro:', error);
       return { success: false, error: error.message };
     }
   };
@@ -93,9 +116,8 @@ export function AuthProvider({ children }) {
   };
 
   const updateUser = (userData) => {
-  setUser(prevUser => ({ ...prevUser, ...userData }));
-};
-
+    setUser(prevUser => ({ ...prevUser, ...userData }));
+  };
 
   const value = {
     user,
