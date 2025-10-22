@@ -1,3 +1,4 @@
+// components/Header.js - Versão corrigida
 import { useState, useEffect } from 'react';
 import { useCart } from '../../context/CartContext'; 
 import { useAuth } from '../../context/AuthContext';
@@ -35,10 +36,14 @@ export default function Header({ onCartClick }) {
   };
 
   const handleNavigateToOrders = () => {
+    setUserModal(false);
+    navigate('/conta', { state: { activeTab: 'orders' } });
+  };
+
+  const handleNavigateToFavorites = () => {
     setSidebarOpen(false);
     setUserModal(false);
-    navigate('/conta');
-    // Você pode querer adicionar uma tab específica para pedidos
+    navigate('/favoritos');
   };
 
   return (
@@ -79,7 +84,6 @@ export default function Header({ onCartClick }) {
         <aside className="sidebar" onClick={() => setSidebarOpen(false)}>
           <div className="sidebar-content" onClick={e => e.stopPropagation()}>
       
-            
             {/* Informações do usuário logado */}
             {isAuthenticated && (
               <div className="user-sidebar-info">
@@ -98,20 +102,20 @@ export default function Header({ onCartClick }) {
               
               {isAuthenticated ? (
                 <>
-                  <a href="#" onClick={e => { e.preventDefault(); handleNavigateToOrders(); }}>📦 Meus Pedidos</a>
-                  <a href="#" onClick={e => { e.preventDefault(); setSidebarOpen(false); navigate('/conta'); }}>👤 Minha Conta</a>
+                  <a href="#" onClick={e => { e.preventDefault(); setSidebarOpen(false); handleNavigateToOrders(); }}>📦 Meus Pedidos</a>
+                  <a href="#" onClick={e => { e.preventDefault(); setSidebarOpen(false); handleNavigateToAccount(); }}>👤 Minha Conta</a>
                 </>
               ) : (
                 <a href="#" onClick={e => { e.preventDefault(); setSidebarOpen(false); navigate('/conta'); }}>👤 Cadastro/Login</a>
               )}
               
-              <a href="#" onClick={e => { e.preventDefault(); setSidebarOpen(false); navigate('/favoritos'); }}>⭐ Favoritos</a>
-              <a href="#">🔥 Promoções</a>
+              <a href="#" onClick={e => { e.preventDefault(); handleNavigateToFavorites(); }}>⭐ Favoritos</a>
+              <a href="#" onClick={e => { e.preventDefault(); setSidebarOpen(false); navigate('/promocoes'); }}>🔥 Promoções</a>
             </nav>
             
             <div className="sidebar-bottom">
-              <a href="#">📞 Suporte</a>
-              <a href="#">⚙️ Configurações</a>
+              <a href="#" onClick={e => { e.preventDefault(); setSidebarOpen(false); navigate('/suporte'); }}>📞 Suporte</a>
+              <a href="#" onClick={e => { e.preventDefault(); setSidebarOpen(false); navigate('/configuracoes'); }}>⚙️ Configurações</a>
               {isAuthenticated && (
                 <a href="#" className="sair" onClick={e => { e.preventDefault(); handleLogout(); }}>🚪 Sair</a>
               )}
@@ -132,7 +136,6 @@ export default function Header({ onCartClick }) {
                 <h3>{user.full_name || user.nome}</h3>
                 <p>{user.email}</p>
               </div>
-            
             </div>
             
             <div className="user-modal-actions">
@@ -142,10 +145,10 @@ export default function Header({ onCartClick }) {
               <button onClick={handleNavigateToOrders} className="modal-action-btn">
                 📦 Meus Pedidos
               </button>
-              <button className="modal-action-btn">
+              <button onClick={handleNavigateToFavorites} className="modal-action-btn">
                 ❤️ Favoritos
               </button>
-              <button className="modal-action-btn">
+              <button onClick={() => navigate('/configuracoes')} className="modal-action-btn">
                 ⚙️ Configurações
               </button>
             </div>

@@ -368,7 +368,7 @@ html, body, #root {
 }
 
 .close-btn {
-  background-color: #4CAF50;
+  background-color: #000000;
   color: white;
   padding: 0.75rem 1.5rem;
   border: none;
@@ -528,34 +528,30 @@ html, body, #root {
   min-height: 100vh;
   background: #f8f8f8;
   padding: 1.5rem;
+  max-width: 800px;
+  margin: 0 auto;
 }
 
-/* HEADER DA CONTA */
-.account-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+/* HEADER DO USUÁRIO */
+.user-header {
+  text-align: center;
+  margin-bottom: 2rem;
   background: #fff;
-  padding: 1.2rem 1.6rem;
+  padding: 2rem;
   border-radius: 12px;
   box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
-  margin-bottom: 2rem;
 }
 
-.user-greeting h1 {
-  font-size: 1.4rem;
-  color: #111;
-  margin-bottom: 0.3rem;
+.user-avatar-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
-.user-greeting p {
-  color: #555;
-  font-size: 0.95rem;
-}
-
-.user-avatar {
-  width: 52px;
-  height: 52px;
+.user-avatar-large {
+  width: 100px;
+  height: 100px;
   border-radius: 50%;
   background: #111;
   color: #fff;
@@ -563,34 +559,42 @@ html, body, #root {
   align-items: center;
   justify-content: center;
   font-weight: 600;
-  font-size: 1.2rem;
+  font-size: 2.5rem;
 }
 
-/* CONTAINER PRINCIPAL */
-.account-container {
-  max-width: 480px;
-  margin: 0 auto;
-  background: #fff;
-  border-radius: 14px;
-  padding: 2rem 1.6rem;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+.change-photo-btn {
+  background: transparent;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 0.5rem 1rem;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
 }
 
-/* TABS */
+.change-photo-btn:hover {
+  background: #f5f5f5;
+}
+
+/* TABS DE NAVEGAÇÃO */
 .account-tabs {
   display: flex;
-  justify-content: space-around;
-  margin-bottom: 1.8rem;
-  gap: 0.4rem;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  gap: 0.5rem;
+  background: #fff;
+  padding: 1rem;
+  border-radius: 12px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
 }
 
 .tab-button {
   flex: 1;
   background: #f1f1f1;
   border: none;
-  border-radius: 10px;
+  border-radius: 8px;
   padding: 0.8rem;
-  font-size: 1rem;
+  font-size: 0.95rem;
   font-weight: 600;
   color: #333;
   transition: all 0.2s ease;
@@ -606,58 +610,177 @@ html, body, #root {
   color: #fff;
 }
 
-/* CONTEÚDO DAS TABS */
-.tab-content {
+/* CONTEÚDO PRINCIPAL */
+.account-content {
+  background: #fff;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
   margin-bottom: 2rem;
 }
 
-.tab-panel {
-  animation: fadeIn 0.25s ease;
-}
-
-@keyframes fadeIn {
-  from { opacity: 0; transform: translateY(5px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* SEÇÃO DE SEGURANÇA */
-.security-section {
-  background: #fafafa;
-  border-radius: 10px;
-  padding: 1.4rem;
-}
-
-.security-section h3 {
-  font-size: 1.2rem;
+.content-section h2 {
+  margin-bottom: 1.5rem;
   color: #111;
-  margin-bottom: 1rem;
+  font-size: 1.5rem;
 }
 
-.security-options {
+/* FORMULÁRIO DE PERFIL */
+.profile-form {
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
+  gap: 1.5rem;
 }
 
-.security-btn {
+.form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-field label {
+  font-weight: 600;
+  color: #222;
+  font-size: 0.95rem;
+}
+
+.input-with-edit {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.input-with-edit input {
+  flex: 1;
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  border: 1.5px solid #ddd;
+  font-size: 1rem;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-with-edit input:focus {
+  outline: none;
+  border-color: #111;
+  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.1);
+}
+
+.edit-btn {
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  font-size: 1.2rem;
+  color: #666;
+  padding: 0.5rem;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+}
+
+.edit-btn:hover {
+  background: #f5f5f5;
+  color: #111;
+}
+
+.save-btn {
   background: #111;
   color: #fff;
   border: none;
-  border-radius: 8px;
-  padding: 0.8rem;
+  border-radius: 22px;
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
   cursor: pointer;
-  font-weight: 500;
-  transition: background 0.2s ease;
+  transition: background 0.18s, transform 0.1s, box-shadow 0.2s;
+  align-self: flex-start;
+  margin-top: 1rem;
 }
 
-.security-btn:hover {
-  background: #222;
+.save-btn:hover {
+  background: #181818;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* HISTÓRICO DE PEDIDOS */
+.order-history {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.order-item {
+  border: 1px solid #eee;
+  border-radius: 8px;
+  padding: 1.2rem;
+  transition: all 0.2s ease;
+}
+
+.order-item:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 0.8rem;
+}
+
+.order-id {
+  font-weight: 600;
+  color: #111;
+}
+
+.order-date {
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.order-status {
+  font-size: 0.9rem;
+  font-weight: 600;
+  padding: 0.2rem 0.6rem;
+  border-radius: 12px;
+}
+
+.status-delivered {
+  background: #e8f5e8;
+  color: #2e7d32;
+}
+
+.status-transit {
+  background: #fff3e0;
+  color: #ef6c00;
+}
+
+.order-product {
+  margin-bottom: 0.5rem;
+  color: #333;
+}
+
+.order-value {
+  font-weight: 600;
+  color: #111;
+}
+
+.view-more-btn {
+  background: transparent;
+  border: 1px solid #ddd;
+  border-radius: 20px;
+  padding: 0.7rem 1.5rem;
+  margin-top: 1rem;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s ease;
+  align-self: center;
+}
+
+.view-more-btn:hover {
+  background: #f5f5f5;
 }
 
 /* BOTÃO SAIR */
 .account-actions {
   text-align: center;
-  margin-top: 2rem;
 }
 
 .logout-btn {
@@ -678,69 +801,30 @@ html, body, #root {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
 }
 
-/* FORM DE ALTERAR NOME */
-.account-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1.2rem;
-  margin-top: 1rem;
-}
-
-.account-form label {
-  font-weight: 600;
-  color: #222;
-  font-size: 0.95rem;
-}
-
-.account-form input {
-  padding: 0.8rem 1rem;
-  border-radius: 8px;
-  border: 1.5px solid #ddd;
-  font-size: 1rem;
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.account-form input:focus {
-  outline: none;
-  border-color: #111;
-  box-shadow: 0 0 0 3px rgba(17, 17, 17, 0.1);
-}
-
-.account-form button {
-  background: #111;
-  color: #fff;
-  border: none;
-  border-radius: 22px;
-  padding: 0.9rem;
-  font-size: 1rem;
-  font-weight: 600;
-  cursor: pointer;
-  transition: background 0.18s, transform 0.1s, box-shadow 0.2s;
-}
-
-.account-form button:hover {
-  background: #181818;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
-}
-
 /* MOBILE */
-@media (max-width: 480px) {
-  .account-container {
-    padding: 1.4rem;
+@media (max-width: 768px) {
+  .account-page {
+    padding: 1rem;
   }
-
+  
   .account-tabs {
-    flex-direction: column;
+    flex-wrap: wrap;
   }
-
+  
   .tab-button {
-    font-size: 0.95rem;
-    padding: 0.7rem;
+    flex: 1 0 45%;
+    margin-bottom: 0.5rem;
   }
-
-  .user-greeting h1 {
-    font-size: 1.2rem;
+  
+  .user-avatar-large {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+  }
+  
+  .order-header {
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }
 

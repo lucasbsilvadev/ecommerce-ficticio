@@ -1,16 +1,31 @@
+// pages/AccountPage.js - Versão corrigida com imports ajustados
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
-import AuthForm from '../auth/AuthForm';
-import ProfileForm from './ProfileForm';
-import OrderHistory from './OrderHistory';
-import ReturnsExchanges from './ReturnsExchanges';
-import AddressManager from './AddressManager';
-import './AccountPage.css';
+import { useNavigate } from 'react-router-dom';
+import AuthForm from '../../components/user/AuthForm.jsx';
+import ProfileForm from '../../components/user/ProfileForm';
+import OrderHistory from '../../components/orders/OrderHistory';
+import AddressManager from '../../components/user/AddressManager';
+
+
+// Componente temporário para Devoluções
+function ReturnsExchanges({ userId }) {
+  return (
+    <div className="returns-exchanges">
+      <div className="empty-state">
+        <span className="empty-icon">🔄</span>
+        <h3>Devoluções e Trocas</h3>
+        <p>Em breve você poderá gerenciar suas devoluções e trocas por aqui.</p>
+        <p>Enquanto isso, entre em contato com nosso suporte para solicitações.</p>
+      </div>
+    </div>
+  );
+}
 
 export default function AccountPage() {
   const { user, logout, isAuthenticated } = useAuth();
-  const [activeTab, setActiveTab] = useState('orders');
-  const [showAuthForm, setShowAuthForm] = useState(false);
+  const navigate = useNavigate();
+  const [activeTab, setActiveTab] = useState('profile');
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -18,58 +33,31 @@ export default function AccountPage() {
     return () => clearTimeout(timer);
   }, [user]);
 
+  // Redirecionar se não estiver autenticado
+  useEffect(() => {
+    if (!isAuthenticated) {
+      navigate('/');
+    }
+  }, [isAuthenticated, navigate]);
+
   const handleLogout = async () => {
     try {
       await logout();
+      navigate('/');
     } catch (error) {
       console.error('Erro ao fazer logout:', error);
     }
   };
 
-  const handleAuthSuccess = () => {
-    setShowAuthForm(false);
-  };
-
   if (!isAuthenticated) {
     return (
       <div className="account-page">
-        <div className="welcome-section">
-          <div className="welcome-card">
-            <h1>Bem-vindo à sua conta!</h1>
-            <p>Faça login ou cadastre-se para acessar recursos exclusivos</p>
-            <div className="benefits-list">
-              <div className="benefit-item">
-                <span className="benefit-icon">📦</span>
-                <span>Acompanhe seus pedidos</span>
-              </div>
-              <div className="benefit-item">
-                <span className="benefit-icon">👤</span>
-                <span>Gerencie seu perfil</span>
-              </div>
-              <div className="benefit-item">
-                <span className="benefit-icon">💳</span>
-                <span>Salve métodos de pagamento</span>
-              </div>
-              <div className="benefit-item">
-                <span className="benefit-icon">🎁</span>
-                <span>Ofertas exclusivas</span>
-              </div>
-            </div>
-            <button 
-              onClick={() => setShowAuthForm(true)}
-              className="auth-btn primary"
-            >
-              Entrar / Cadastrar
-            </button>
-          </div>
+        <div className="not-authenticated">
+          <h2>Você precisa estar logado para acessar esta página</h2>
+          <button onClick={() => navigate('/')}>
+            Voltar para a página inicial
+          </button>
         </div>
-
-        {showAuthForm && (
-          <AuthForm
-            onClose={() => setShowAuthForm(false)}
-            onAuthSuccess={handleAuthSuccess}
-          />
-        )}
       </div>
     );
   }
@@ -87,58 +75,48 @@ export default function AccountPage() {
 
   return (
     <div className="account-page">
-      {/* Header do Usuário */}
-      <div className="user-header">
-        <div className="user-avatar-large">
-          {user.full_name ? user.full_name.charAt(0).toUpperCase() : user.nome.charAt(0).toUpperCase()}
+      <div className="account-container">
+        {/* Header do Usuário */}
+        <div className="user-header">
+          <div className="user-avatar-section">
+            <div className="user-avatar-large">
+              {user.full_name ? user.full_name.charAt(0).toUpperCase() : user.nome.charAt(0).toUpperCase()}
+            </div>
+            <h1 className="user-name">{user.full_name || user.nome}</h1>
+            <p className="user-email">{user.email}</p>
+          </div>
         </div>
-        <div className="user-info">
-          <h1 className="user-name">{user.full_name || user.nome}</h1>
-          <p className="user-email">{user.email}</p>
+
+        {/* Tabs de Navegação */}
+        <div className="account-tabs">
           <button 
-            className="edit-profile-btn"
+            className={`tab-button ${activeTab === 'profile' ? 'active' : ''}`}
             onClick={() => setActiveTab('profile')}
           >
-            Editar Dados
+            👤 Perfil
           </button>
-        </div>
-      </div>
-
-      <div className="account-container">
-        {/* Navegação Lateral */}
-        <nav className="account-sidebar">
           <button 
-            className={`sidebar-item ${activeTab === 'orders' ? 'active' : ''}`}
+            className={`tab-button ${activeTab === 'orders' ? 'active' : ''}`}
             onClick={() => setActiveTab('orders')}
           >
-            <span className="sidebar-icon">📦</span>
-            Meus Pedidos
+            📦 Pedidos
           </button>
           <button 
-            className={`sidebar-item ${activeTab === 'returns' ? 'active' : ''}`}
+            className={`tab-button ${activeTab === 'returns' ? 'active' : ''}`}
             onClick={() => setActiveTab('returns')}
           >
-            <span className="sidebar-icon">🔄</span>
-            Devoluções e Trocas
+            🔄 Devoluções
           </button>
           <button 
-            className={`sidebar-item ${activeTab === 'addresses' ? 'active' : ''}`}
+            className={`tab-button ${activeTab === 'addresses' ? 'active' : ''}`}
             onClick={() => setActiveTab('addresses')}
           >
-            <span className="sidebar-icon">📍</span>
-            Endereços
+            📍 Endereços
           </button>
-          <button 
-            className={`sidebar-item ${activeTab === 'profile' ? 'active' : ''}`}
-            onClick={() => setActiveTab('profile')}
-          >
-            <span className="sidebar-icon">👤</span>
-            Meu Perfil
-          </button>
-        </nav>
+        </div>
 
         {/* Conteúdo Principal */}
-        <main className="account-content">
+        <div className="account-content">
           {activeTab === 'profile' && (
             <div className="content-section">
               <h2>Meu Perfil</h2>
@@ -166,14 +144,14 @@ export default function AccountPage() {
               <AddressManager userId={user.id} />
             </div>
           )}
-        </main>
-      </div>
+        </div>
 
-      {/* Ações da Conta */}
-      <div className="account-actions">
-        <button className="logout-btn" onClick={handleLogout}>
-          Sair da Conta
-        </button>
+        {/* Botão Sair */}
+        <div className="account-actions">
+          <button className="logout-btn" onClick={handleLogout}>
+            🚪 Sair da Conta
+          </button>
+        </div>
       </div>
     </div>
   );

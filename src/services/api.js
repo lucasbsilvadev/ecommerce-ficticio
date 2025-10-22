@@ -119,6 +119,17 @@ class ApiService {
     });
   }
 
+  // NOVO: Atualizar perfil do usuário
+  async updateProfile(profileData) {
+    return this.request('/auth', {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'updateProfile',
+        ...profileData
+      })
+    });
+  }
+
   // Products endpoints
   async getProducts(filters = {}) {
     return this.request('/products', {
@@ -186,6 +197,47 @@ class ApiService {
       body: JSON.stringify({
         action: 'setDefaultAddress',
         id: addressId
+      })
+    });
+  }
+
+  // NOVO: Order endpoints - Histórico de pedidos
+  async getOrders(userId) {
+    return this.request('/orders', {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'getOrders',
+        user_id: userId
+      })
+    });
+  }
+
+  async getOrderById(orderId) {
+    return this.request('/orders', {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'getOrderById',
+        order_id: orderId
+      })
+    });
+  }
+
+  async createOrder(orderData) {
+    return this.request('/orders', {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'createOrder',
+        ...orderData
+      })
+    });
+  }
+
+  async cancelOrder(orderId) {
+    return this.request('/orders', {
+      method: 'POST',
+      body: JSON.stringify({
+        action: 'cancelOrder',
+        order_id: orderId
       })
     });
   }
