@@ -1,9 +1,12 @@
-// ProfileForm.js - Componente atualizado com funcionalidade real
+// components/user/ProfileForm.js
 import { useState } from 'react';
 import { api } from '../../services/api';
+import { useAuth } from '../../context/AuthContext';
+import './ProfileForm.css';
 
 export default function ProfileForm({ user }) {
-  const [name, setName] = useState(user.full_name || user.nome || '');
+  const { updateUser } = useAuth();
+  const [name, setName] = useState(user.full_name || '');
   const [email, setEmail] = useState(user.email || '');
   const [isEditingName, setIsEditingName] = useState(false);
   const [isEditingEmail, setIsEditingEmail] = useState(false);
@@ -27,29 +30,50 @@ export default function ProfileForm({ user }) {
       
       // Só faz a requisição se houver alterações
       if (Object.keys(updateData).length > 0) {
-        await api.updateProfile(updateData);
-        setMessage('Perfil atualizado com sucesso!');
+        const response = await api.updateProfile(updateData);
         
-        // Atualiza o localStorage se necessário
-        const updatedUser = { ...user, ...updateData };
-        localStorage.setItem('user', JSON.stringify(updatedUser));
-        
-        // Recarrega a página para refletir as mudanças
-        setTimeout(() => {
-          window.location.reload();
-        }, 1500);
+        if (response.success) {
+          setMessage('Perfil atualizado com sucesso!');
+          
+          // Atualiza o contexto de autenticação
+          updateUser(response.user);
+          
+          // Atualiza o localStorage
+          localStorage.setItem('user', JSON.stringify(response.user));
+          
+          // Desativa modo de edição
+          setIsEditingName(false);
+          setIsEditingEmail(false);
+          
+          console.log('✅ Perfil atualizado:', response.user);
+        } else {
+          throw new Error(response.error || 'Erro ao atualizar perfil');
+        }
       } else {
         setMessage('Nenhuma alteração foi feita.');
+        setIsEditingName(false);
+        setIsEditingEmail(false);
       }
       
-      setIsEditingName(false);
-      setIsEditingEmail(false);
     } catch (error) {
-      console.error('Erro ao atualizar perfil:', error);
-      setMessage('Erro ao atualizar perfil. Tente novamente.');
+      console.error('❌ Erro ao atualizar perfil:', error);
+      setMessage(error.message || 'Erro ao atualizar perfil. Tente novamente.');
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleCancel = () => {
+    setName(user.full_name || '');
+    setEmail(user.email || '');
+    setIsEditingName(false);
+    setIsEditingEmail(false);
+    setMessage('');
+  };
+
+  const hasChanges = () => {
+    return (isEditingName && name !== user.full_name) || 
+           (isEditingEmail && email !== user.email);
   };
 
   return (
@@ -61,20 +85,27 @@ export default function ProfileForm({ user }) {
       )}
       
       <div className="form-field">
-        <label>Nome</label>
+        <label>Nome Completo</label>
         <div className="input-with-edit">
           <input
             type="text"
             value={name}
             onChange={(e) => setName(e.target.value)}
             disabled={!isEditingName}
+            className={isEditingName ? 'editing' : ''}
           />
           <button 
             className="edit-btn"
-            onClick={() => setIsEditingName(!isEditingName)}
+            onClick={() => {
+              setIsEditingName(!isEditingName);
+              if (isEditingName && name !== user.full_name) {
+                setName(user.full_name || '');
+              }
+            }}
             type="button"
+            title={isEditingName ? 'Cancelar edição' : 'Editar nome'}
           >
-            ✎
+            {isEditingName ? '✕' : '✎'}
           </button>
         </div>
       </div>
@@ -87,24 +118,43 @@ export default function ProfileForm({ user }) {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             disabled={!isEditingEmail}
+            className={isEditingEmail ? 'editing' : ''}
           />
           <button 
             className="edit-btn"
-            onClick={() => setIsEditingEmail(!isEditingEmail)}
+            onClick={() => {
+              setIsEditingEmail(!isEditingEmail);
+              if (isEditingEmail && email !== user.email) {
+                setEmail(user.email || '');
+              }
+            }}
             type="button"
+            title={isEditingEmail ? 'Cancelar edição' : 'Editar e-mail'}
           >
-            ✎
+            {isEditingEmail ? '✕' : '✎'}
           </button>
         </div>
       </div>
 
-      <button 
-        className="save-btn" 
-        onClick={handleSave}
-        disabled={loading}
-      >
-        {loading ? 'Salvando...' : 'Salvar Alterações'}
-      </button>
+      <div className="form-actions">
+        {hasChanges() && (
+          <button 
+            type="button"
+            className="cancel-btn"
+            onClick={handleCancel}
+            disabled={loading}
+          >
+            Cancelar
+          </button>
+        )}
+        <button 
+          className="save-btn" 
+          onClick={handleSave}
+          disabled={loading || !hasChanges()}
+        >
+          {loading ? 'Salvando...' : 'Salvar Alterações'}
+        </button>
+      </div>
     </div>
   );
 }

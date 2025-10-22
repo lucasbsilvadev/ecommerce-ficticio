@@ -1,6 +1,7 @@
 // components/user/AddressManager.js
 import { useState, useEffect } from 'react';
 import { api } from '../../services/api';
+import BackButton from '../../components/common/BackButton.jsx';
 
 export default function AddressManager({ userId }) {
   const [addresses, setAddresses] = useState([]);
@@ -56,6 +57,7 @@ export default function AddressManager({ userId }) {
 
   return (
     <div className="address-manager">
+              <BackButton />
       <div className="addresses-header">
         <h3>Meus Endereços</h3>
         <button 

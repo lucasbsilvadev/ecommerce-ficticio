@@ -92,13 +92,19 @@ export function AuthProvider({ children }) {
     }
   };
 
+  const updateUser = (userData) => {
+  setUser(prevUser => ({ ...prevUser, ...userData }));
+};
+
+
   const value = {
     user,
     login,
     register,
     logout,
     loading,
-    isAuthenticated: !!user
+    isAuthenticated: !!user,
+    updateUser
   };
 
   return (

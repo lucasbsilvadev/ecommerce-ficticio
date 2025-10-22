@@ -120,15 +120,15 @@ class ApiService {
   }
 
   // NOVO: Atualizar perfil do usuário
-  async updateProfile(profileData) {
-    return this.request('/auth', {
-      method: 'POST',
-      body: JSON.stringify({
-        action: 'updateProfile',
-        ...profileData
-      })
-    });
-  }
+async updateProfile(profileData) {
+  return this.request('/auth', {
+    method: 'POST',
+    body: JSON.stringify({
+      action: 'updateProfile',
+      ...profileData
+    })
+  });
+}
 
   // Products endpoints
   async getProducts(filters = {}) {

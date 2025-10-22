@@ -1,4 +1,4 @@
-// pages/AccountPage.js - Versão corrigida com imports ajustados
+// pages/AccountPage.js - Versão final
 import { useState, useEffect } from 'react';
 import { useAuth } from '../../context/AuthContext';
 import { useNavigate } from 'react-router-dom';
@@ -6,6 +6,7 @@ import AuthForm from '../../components/user/AuthForm.jsx';
 import ProfileForm from '../../components/user/ProfileForm';
 import OrderHistory from '../../components/orders/OrderHistory';
 import AddressManager from '../../components/user/AddressManager';
+import BackButton from '../common/BackButton.jsx';
 
 
 // Componente temporário para Devoluções
@@ -75,6 +76,7 @@ export default function AccountPage() {
 
   return (
     <div className="account-page">
+      <BackButton />
       <div className="account-container">
         {/* Header do Usuário */}
         <div className="user-header">
