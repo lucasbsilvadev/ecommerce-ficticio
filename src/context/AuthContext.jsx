@@ -123,10 +123,10 @@ export function AuthProvider({ children }) {
     user,
     login,
     register,
+    updateUser,
     logout,
     loading,
     isAuthenticated: !!user,
-    updateUser
   };
 
   return (
