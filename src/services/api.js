@@ -149,6 +149,80 @@ class ApiService {
       })
     });
   }
+
+  // Address endpoints
+async getAddresses() {
+  return this.request('/addresses', {
+    method: 'POST',
+    body: JSON.stringify({
+      action: 'getAddresses'
+    })
+  });
 }
+
+async createAddress(addressData) {
+  return this.request('/addresses', {
+    method: 'POST',
+    body: JSON.stringify({
+      action: 'createAddress',
+      ...addressData
+    })
+  });
+}
+
+async updateAddress(addressData) {
+  return this.request('/addresses', {
+    method: 'POST',
+    body: JSON.stringify({
+      action: 'updateAddress',
+      ...addressData
+    })
+  });
+}
+
+async deleteAddress(addressId) {
+  return this.request('/addresses', {
+    method: 'POST',
+    body: JSON.stringify({
+      action: 'deleteAddress',
+      id: addressId
+    })
+  });
+}
+
+async setDefaultAddress(addressId) {
+  return this.request('/addresses', {
+    method: 'POST',
+    body: JSON.stringify({
+      action: 'setDefaultAddress',
+      id: addressId
+    })
+  });
+}
+
+// CEP lookup endpoint
+async lookupCep(cep) {
+  const cepLimpo = cep.replace(/\D/g, '');
+  const response = await fetch(`https://viacep.com.br/ws/${cepLimpo}/json/`);
+  
+  if (!response.ok) {
+    throw new Error(`Erro ao buscar CEP: ${response.status}`);
+  }
+  
+  const data = await response.json();
+  
+  if (data.erro) {
+    throw new Error('CEP não encontrado');
+  }
+  
+  return {
+    logradouro: data.logradouro,
+    bairro: data.bairro,
+    cidade: data.localidade,
+    estado: data.uf
+  };
+}
+}
+
 
 export const api = new ApiService();

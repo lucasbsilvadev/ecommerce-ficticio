@@ -8,6 +8,11 @@ export default function ProductGrid({ produtos, categorias, busca, categoriaAtiv
         {produtos.map((produto, i) => (
           <ProductCard key={i} {...produto} />
         ))}
+        {produtos.length === 0 && (
+          <div className="no-products">
+            <p>Nenhum produto encontrado</p>
+          </div>
+        )}
       </div>
     );
   }
@@ -19,8 +24,8 @@ export default function ProductGrid({ produtos, categorias, busca, categoriaAtiv
         const produtosCat = produtos.filter(p => p.categoria === cat);
         if (!produtosCat.length) return null;
         return (
-          <section key={cat}>
-            <h3 style={{padding: '10px 0 4px 10px', fontWeight: 700, fontSize: '1.05rem'}}>{cat}</h3>
+          <section key={cat} className="category-section">
+            <h3 className="category-title">{cat}</h3>
             <div className="products-grid">
               {produtosCat.map((produto, i) => (
                 <ProductCard key={i} {...produto} />

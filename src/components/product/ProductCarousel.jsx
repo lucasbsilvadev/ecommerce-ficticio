@@ -39,9 +39,9 @@ export default function ProductCarousel({ produtos = [] }) {
     <section className="banner-carousel-section">
       <div className="banner-title">
         <h2>
-          Mais Vendidos <span role="img" aria-label="fogo">🔥</span>
+        Sistema fictício
         </h2>
-        <span className="banner-legend">Descubra o que está bombando agora!</span>
+        <span className="banner-legend">Todos os produtos são fictícios, esse sistema é puramente experimental</span>
       </div>
       <div className="carousel-outer">
         <div className="carousel-scroll" ref={carouselRef}>
