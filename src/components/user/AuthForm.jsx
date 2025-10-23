@@ -6,6 +6,7 @@ export default function AuthForm({ onClose, onAuthSuccess }) {
   const [isLogin, setIsLogin] = useState(true);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
+  const [showPassword, setShowPassword] = useState(false);
   const [formData, setFormData] = useState({
     nome: '',
     email: '',
@@ -25,134 +26,210 @@ export default function AuthForm({ onClose, onAuthSuccess }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('🔄 AuthForm - INICIANDO SUBMIT...');
+    console.log('📧 Email:', formData.email);
+    console.log('🔑 Password:', formData.password ? '***' : 'vazio');
+    console.log('🔓 IsLogin:', isLogin);
+    
     setLoading(true);
     setError('');
 
     // Validações
     if (!isLogin && formData.password !== formData.confirmPassword) {
+      console.log('❌ Senhas não coincidem');
       setError('Senhas não coincidem');
       setLoading(false);
       return;
     }
 
     if (formData.password.length < 6) {
+      console.log('❌ Senha muito curta');
       setError('A senha deve ter pelo menos 6 caracteres');
       setLoading(false);
       return;
     }
 
     try {
+      console.log('🚀 Chamando função de auth...');
       let result;
       
       if (isLogin) {
+        console.log('🔐 Chamando login...');
         result = await login({
           email: formData.email,
           password: formData.password
         });
+        console.log('📨 Resultado do login:', result);
       } else {
+        console.log('👤 Chamando register...');
         result = await register({
           email: formData.email,
           password: formData.password,
           full_name: formData.nome
         });
+        console.log('📨 Resultado do register:', result);
       }
 
       if (result.success) {
+        console.log('✅ Auth bem-sucedida no AuthForm');
+        console.log('👤 Usuário:', result.user);
         onAuthSuccess(result.user);
         // Só chama onClose se existir
         if (onClose) {
           onClose();
         }
       } else {
+        console.log('❌ Auth falhou:', result.error);
         setError(result.error || 'Erro na autenticação');
       }
     } catch (error) {
+      console.error('💥 ERRO NO AUTHFORM:', error);
+      console.error('💥 Stack:', error.stack);
       setError('Erro de conexão com o servidor');
-      console.error('Auth error:', error);
     } finally {
+      console.log('🏁 Finalizando submit (loading: false)');
       setLoading(false);
     }
   };
 
+
   return (
     <div className="auth-modal-overlay">
       <div className="auth-modal">
-        {/* Mostra botão de fechar apenas se onClose existir */}
         {onClose && (
-          <button className="close-btn" onClick={onClose}>×</button>
+          <button className="close-btn" aria-label="Fechar" onClick={onClose}>×</button>
         )}
-        <h2>{isLogin ? 'Login' : 'Cadastro'}</h2>
-        
-        {error && <div className="error-message">{error}</div>}
-        
-        <form onSubmit={handleSubmit}>
+
+        <div className="auth-header">
+          <div className="auth-pill-toggle" role="tablist" aria-label="Alternar entre Login e Cadastro">
+            <button
+              type="button"
+              role="tab"
+              aria-selected={isLogin}
+              className={`pill ${isLogin ? 'active' : ''}`}
+              onClick={() => setIsLogin(true)}
+            >
+              Login
+            </button>
+            <button
+              type="button"
+              role="tab"
+              aria-selected={!isLogin}
+              className={`pill ${!isLogin ? 'active' : ''}`}
+              onClick={() => setIsLogin(false)}
+            >
+              Cadastro
+            </button>
+            <span className={`pill-indicator ${isLogin ? 'left' : 'right'}`} aria-hidden="true" />
+          </div>
+          <h2 className="auth-title">
+            {isLogin ? 'Bem-vindo de volta' : 'Crie sua conta'}
+            <span className="title-glow" />
+          </h2>
+          <p className="auth-subtitle">Streetwear · Y2K · Drops exclusivos</p>
+        </div>
+
+        {error && <div className="error-message" role="alert">{error}</div>}
+
+        <form onSubmit={handleSubmit} className="auth-form" autoComplete="on">
           {!isLogin && (
             <div className="form-group">
-              <label>Nome completo</label>
+              <label htmlFor="nome">Nome completo</label>
               <input
+                id="nome"
                 type="text"
                 name="nome"
                 value={formData.nome}
                 onChange={handleChange}
                 required
                 placeholder="Seu nome completo"
+                autoComplete="name"
               />
             </div>
           )}
-          
+
           <div className="form-group">
-            <label>E-mail</label>
+            <label htmlFor="email">E-mail</label>
             <input
+              id="email"
               type="email"
               name="email"
               value={formData.email}
               onChange={handleChange}
               required
               placeholder="seu@email.com"
+              autoComplete="email"
+              inputMode="email"
             />
           </div>
-          
-          <div className="form-group">
-            <label>Senha</label>
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              required
-              minLength="6"
-              placeholder="Mínimo 6 caracteres"
-            />
+
+          <div className="form-group password-group">
+            <label htmlFor="password">Senha</label>
+            <div className="password-input-wrap">
+              <input
+                id="password"
+                type={showPassword ? 'text' : 'password'}
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                required
+                minLength="6"
+                placeholder="Mínimo 6 caracteres"
+                autoComplete={isLogin ? 'current-password' : 'new-password'}
+              />
+              <button
+                type="button"
+                className="toggle-password"
+                aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
+                onClick={() => setShowPassword(!showPassword)}
+              >
+                {showPassword ? 'Ocultar' : 'Mostrar'}
+              </button>
+            </div>
           </div>
-          
+
           {!isLogin && (
             <div className="form-group">
-              <label>Confirmar senha</label>
+              <label htmlFor="confirmPassword">Confirmar senha</label>
               <input
-                type="password"
+                id="confirmPassword"
+                type={showPassword ? 'text' : 'password'}
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 required
                 placeholder="Digite novamente sua senha"
+                autoComplete="new-password"
               />
             </div>
           )}
-          
-          <button 
-            type="submit" 
+
+          <button
+            type="submit"
             disabled={loading}
             className="submit-btn"
           >
             {loading ? 'Carregando...' : (isLogin ? 'Entrar' : 'Cadastrar')}
           </button>
         </form>
-        
+
+        <div className="auth-divider" role="separator">
+          <span />
+          <em>ou</em>
+          <span />
+        </div>
+
+        <div className="social-login">
+          <button type="button" className="social-btn google" disabled>
+            Em breve: Entrar com Google
+          </button>
+        </div>
+
         <div className="auth-switch">
           <p>
             {isLogin ? 'Não tem uma conta?' : 'Já tem uma conta?'}
-            <button 
-              type="button" 
+            <button
+              type="button"
               onClick={() => {
                 setIsLogin(!isLogin);
                 setError('');
