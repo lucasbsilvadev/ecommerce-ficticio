@@ -14,7 +14,7 @@ import CheckoutModal from '../components/cart/CheckoutModal';
 import { shuffleArray } from '../utils/shuffle';
 import { produtos, categorias } from '../data/products';
 import { useCart } from '../context/CartContext';
-import { useAuth } from '../context/AuthContext'; // ← IMPORT ADICIONADO
+import { useAuth } from '../context/AuthContext';
 import { api } from '../services/api';
 
 export default function Home() {
@@ -60,9 +60,8 @@ export default function Home() {
     }
   };
 
-  // Produtos para carrossel e grid
-  const carouselRef = useRef(shuffleArray(products).slice(0, 6));
-  const maisVendidos = carouselRef.current;
+  // CORREÇÃO: Produtos para carrossel - calculado dinamicamente
+  const maisVendidos = products.length > 0 ? shuffleArray([...products]).slice(0, 6) : [];
 
   const produtosFiltrados = products.filter(produto =>
     (categoriaAtiva === "Todos" || produto.categoria === categoriaAtiva) &&
@@ -133,7 +132,10 @@ export default function Home() {
         onCartClick={() => setCartOpen(true)}
         user={user}
       />
+      
+      {/* CORREÇÃO: Agora maisVendidos será atualizado quando products mudar */}
       <ProductCarousel produtos={maisVendidos} />
+      
       <SearchBar value={busca} onChange={setBusca} />
       <CategoryScroll
         categorias={categorias}

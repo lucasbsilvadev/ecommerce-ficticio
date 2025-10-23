@@ -39,7 +39,7 @@ export default function ProductCarousel({ produtos = [] }) {
     <section className="banner-carousel-section">
       <div className="banner-title">
         <h2>
-        Sistema fictício
+        Sistema Fictício
         </h2>
         <span className="banner-legend">Todos os produtos são fictícios, esse sistema é puramente experimental</span>
       </div>
