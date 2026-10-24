@@ -22,3 +22,11 @@ dist-ssr
 *.njsproj
 *.sln
 *.sw?
+
+# Variáveis de ambiente locais
+.env
+.env.local
+
+# Snapshot local
+snapshot.py
+snapshot.txt
