@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./ProductCard.css";
+import { Beer } from "lucide-react";
 
 function formatPrice(preco) {
   // preço vem como string "40,00"

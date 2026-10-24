@@ -1,22 +1,22 @@
 export const produtos = {
   cervejas: [
-    { nome: "Amstel 350ml", preco: "40,00", imagem: "/images/amstel350.png", categoria: "Cervejas" },
-    { nome: "Amstel  269ml", preco: "33,00", imagem: "/images/amstel269.png" },
-    { nome: "Devassa 350ml", preco: "38,00", imagem: "/images/devassa350.png", categoria: "Cervejas" },
-    { nome: "Devassa 269ml", preco: "32,00", imagem: "/images/devassa.png", categoria: "Cervejas" },
-    { nome: "Heineken Long-Neck", preco: "40,00", imagem: "/images/heinekenlongneck.png", categoria: "Cervejas" },
+    { nome: "Amstel 350ml", preco: "45,00", imagem: "/images/amstel350.png", categoria: "Cervejas" },
+    { nome: "Amstel  269ml", preco: "38,00", imagem: "/images/amstel269.png" },
+    // { nome: "Devassa 350ml", preco: "38,00", imagem: "/images/devassa350.png", categoria: "Cervejas" },
+    // { nome: "Devassa 269ml", preco: "32,00", imagem: "/images/devassa.png", categoria: "Cervejas" },
+    { nome: "Heineken Long-Neck", preco: "42,00", imagem: "/images/heinekenlongneck.png", categoria: "Cervejas" },
     { nome: "Heineken 350ml Lata", preco: "60,00", imagem: "/images/heineken350.png", categoria: "Cervejas" },
-    { nome: "Heineken Shot", preco: "60,00", imagem: "/images/heinekenshot.png", categoria: "Cervejas" },
-    { nome: "Brahma Chopp", preco: "43,00", imagem: "/images/bhrama.png", categoria: "Cervejas" },
+    { nome: "Heineken Shot", preco: "35,00", imagem: "/images/heinekenshot.png", categoria: "Cervejas" },
+    { nome: "Brahma Chopp", preco: "44,00", imagem: "/images/bhrama.png", categoria: "Cervejas" },
     { nome: "Kaiser 350ml", preco: "35,00", imagem: "/images/kaiser.png", categoria: "Cervejas" },
-    { nome: "Brahma Duplo Malte", preco: "44,00", imagem: "/images/brahma_dm.png", categoria: "Cervejas" },
+    // { nome: "Brahma Duplo Malte", preco: "44,00", imagem: "/images/brahma_dm.png", categoria: "Cervejas" },
     { nome: "Itaipava", preco: "29,00", imagem: "/images/itaipava.png", categoria: "Cervejas" },
-    { nome: "Skol", preco: "44,00", imagem: "/images/skol.png", categoria: "Cervejas" },
-    { nome: "Império Branca", preco: "38,00", imagem: "/images/imperio_branca.png", categoria: "Cervejas" },
-    { nome: "Império Verde", preco: "40,00", imagem: "/images/imperio_verde.png", categoria: "Cervejas" },
-    { nome: "Spaten", preco: "50,00", imagem: "/images/spaten.png", categoria: "Cervejas" },
-    { nome: "Stella Artois", preco: "38,00", imagem: "/images/stella.png", categoria: "Cervejas" },
-    { nome: "Petra", preco: "37,00", imagem: "/images/petra.png", categoria: "Cervejas" }
+    // { nome: "Skol", preco: "44,00", imagem: "/images/skol.png", categoria: "Cervejas" },
+    { nome: "Império Branca", preco: "42,00", imagem: "/images/imperio_branca.png", categoria: "Cervejas" },
+    { nome: "Império Verde", preco: "45,00", imagem: "/images/imperio_verde.png", categoria: "Cervejas" },
+    { nome: "Spaten", preco: "54,00", imagem: "/images/spaten.png", categoria: "Cervejas" },
+    { nome: "Stella Artois", preco: "42,00", imagem: "/images/stella.png", categoria: "Cervejas" },
+    { nome: "Petra", preco: "38,00", imagem: "/images/petra.png", categoria: "Cervejas" }
   ],
   vodkas: [
     { nome: "Smirnoff", preco: "40,00", imagem: "/images/smirnoff.png", categoria: "Vodkas" },
@@ -26,11 +26,11 @@ export const produtos = {
     { nome: "51 Ice", preco: "36,00", imagem: "/images/51ice.png", categoria: "Vodkas" }
   ],
   energeticos: [
-    { nome: "Baly", preco: "18,00", imagem: "/images/baly.png", categoria: "Energéticos" },
-    { nome: "Vulcano", preco: "16,00", imagem: "/images/vulcano.png", categoria: "Energéticos" },
-    { nome: "Full", preco: "12,00", imagem: "/images/full.png", categoria: "Energéticos" },
+    { nome: "Baly", preco: "18,00", imagem: "/images/baly.png", categoria: "Energéticos" }, // adicionar os diferentes sabores
+    // { nome: "Vulcano", preco: "16,00", imagem: "/images/vulcano.png", categoria: "Energéticos" },
+    // { nome: "Full", preco: "12,00", imagem: "/images/full.png", categoria: "Energéticos" },
     { nome: "Monster", preco: "10,00", imagem: "/images/monster.png", categoria: "Energéticos" },
-    { nome: "Red Bull", preco: "12,00", imagem: "/images/redbull.png", categoria: "Energéticos" }
+    // { nome: "Red Bull", preco: "12,00", imagem: "/images/redbull.png", categoria: "Energéticos" } // adicionar os diferentes sabores
   ],
   semAlcool: [
     { nome: "Heineken 0%", preco: "42,00", imagem: "/images/heineken0.png", categoria: "Sem Álcool" },
@@ -54,14 +54,14 @@ export const produtos = {
   ],
   combos: [
     { nome: "Smirnoff + Baly", preco: "60,00", imagem: "/images/smirnoff_baly.png", categoria: "Combos" },
-    { nome: "Smirnoff + Vulcano", preco: "58,00", imagem: "/images/smirnoff_vulcano.png", categoria: "Combos" },
-    { nome: "Smirnoff + Full", preco: "55,00", imagem: "/images/smirnoff_full.png", categoria: "Combos" },
+    // { nome: "Smirnoff + Vulcano", preco: "58,00", imagem: "/images/smirnoff_vulcano.png", categoria: "Combos" },
+    // { nome: "Smirnoff + Full", preco: "55,00", imagem: "/images/smirnoff_full.png", categoria: "Combos" },
     { nome: "Orloff + Baly ", preco: "50,00", imagem: "/images/orloff_baly.png", categoria: "Combos" },
-    { nome: "Orloff + Vulcano", preco: "48,00", imagem: "/images/orloff_vulcano.png", categoria: "Combos" },
-    { nome: "Orloff + Full", preco: "45,00", imagem: "/images/orloff_full.png", categoria: "Combos" },
+    // { nome: "Orloff + Vulcano", preco: "48,00", imagem: "/images/orloff_vulcano.png", categoria: "Combos" },
+    // { nome: "Orloff + Full", preco: "45,00", imagem: "/images/orloff_full.png", categoria: "Combos" },
     { nome: "Kriskoff + Baly ", preco: "32,00", imagem: "/images/kriskoff_baly.png", categoria: "Combos" },
-    { nome: "Kriskoff + Vulcano", preco: "30,00", imagem: "/images/kriskoff_vulcano.png", categoria: "Combos" },
-    { nome: "Kriskoff + Full", preco: "28,00", imagem: "/images/kriskoff_full.png", categoria: "Combos" }
+    // { nome: "Kriskoff + Vulcano", preco: "30,00", imagem: "/images/kriskoff_vulcano.png", categoria: "Combos" },
+    // { nome: "Kriskoff + Full", preco: "28,00", imagem: "/images/kriskoff_full.png", categoria: "Combos" }
   ]
 };
 
