@@ -1,52 +1,91 @@
-import { useState } from 'react';
-import ProductCard from './components/ProductCard';
-import { produtos, categorias } from './data/products';
-import "./AppStyles.css";
+import { useState } from "react";
+import { CartProvider, useCart } from "./features/cart/CartContext";
+import AppLayout from "./components/layout/AppLayout";
+import CatalogPage from "./features/catalog/pages/CatalogPage";
+import ProductPage from "./features/catalog/pages/ProductPage";
+import CartPage from "./features/cart/pages/CartPage";
+import CheckoutPage from "./features/order/pages/CheckoutPage";
+import ReviewPage from "./features/order/pages/ReviewPage";
+import Preloader from "./components/ui/Preloader";
+import TermosPage from "./features/legal/pages/TermosPage";
+import PrivacidadePage from "./features/legal/pages/PrivacidadePage";
+import ComoFuncionaPage from "./features/legal/pages/ComoFuncionaPage";
 
-function App() {
-  const [categoriaAtiva, setCategoriaAtiva] = useState("Todos");
+const LAYOUT_ROUTES = new Set(["catalog", "termos", "privacidade", "como-funciona"]);
 
-  // Juntar todos os produtos em um único array
-  const todosProdutos = Object.values(produtos).flat();
-  
-  // Filtrar produtos pela categoria selecionada
-  const produtosFiltrados = categoriaAtiva === "Todos" 
-    ? todosProdutos 
-    : todosProdutos.filter(produto => produto.categoria === categoriaAtiva);
+function AppRoutes() {
+  const [route, setRoute] = useState({ name: "catalog" });
+  const { add, count } = useCart();
 
-  return (
-    <div className="app-container">
-      <div className="gradient-header">GELADA</div>
+  function goPage(name) { setRoute({ name }); }
+  function goCatalog() { setRoute({ name: "catalog" }); }
+  function goProduct(produto) { setRoute({ name: "product", produto }); }
+  function goCart() { setRoute({ name: "cart" }); }
+  function goCheckout() { setRoute({ name: "checkout", data: route.data || {} }); }
+  function goReview(data) { setRoute({ name: "review", data }); }
 
-      {/* Menu de categorias com scroll horizontal */}
-      <div className="categories-scroll">
-        <div className="categories-container">
-          {categorias.map((cat, i) => (
-            <button
-              key={i}
-              className={`category-btn ${categoriaAtiva === cat ? 'active' : ''}`}
-              onClick={() => setCategoriaAtiva(cat)}
-            >
-              {cat}
-            </button>
-          ))}
-        </div>
-      </div>
-
-      {/* Grade de produtos */}
-      <div className="products-grid">
-        {produtosFiltrados.map((produto, i) => (
-          <ProductCard 
-          
-            key={i}
-            nome={produto.nome}
-            preco={produto.preco}
-            imagem={produto.imagem}
+  function renderRoute() {
+    switch (route.name) {
+      case "catalog":
+        return <CatalogPage onOpenProduct={goProduct} />;
+      case "termos":
+        return <TermosPage />;
+      case "privacidade":
+        return <PrivacidadePage />;
+      case "como-funciona":
+        return <ComoFuncionaPage />;
+      case "product":
+        return (
+          <ProductPage
+            produto={route.produto}
+            onBack={goCatalog}
+            onAdd={(p, qty) => { add(p, qty); goCart(); }}
           />
-        ))}
-      </div>
-    </div>
-  );
+        );
+      case "cart":
+        return <CartPage onBack={goCatalog} onCheckout={goCheckout} />;
+      case "checkout":
+        return (
+          <CheckoutPage
+            initial={route.data}
+            onBack={goCart}
+            onNext={goReview}
+          />
+        );
+      case "review":
+        return (
+          <ReviewPage
+            data={route.data}
+            onBack={() => setRoute({ name: "checkout", data: route.data })}
+            onClear={goCatalog}
+          />
+        );
+      default:
+        return null;
+    }
+  }
+
+  if (LAYOUT_ROUTES.has(route.name)) {
+    return (
+      <AppLayout
+        current={route.name}
+        onNavigate={goPage}
+        onOpenCart={goCart}
+        cartCount={count}
+      >
+        {renderRoute()}
+      </AppLayout>
+    );
+  }
+
+  return renderRoute();
 }
 
-export default App;
+export default function App() {
+  return (
+    <CartProvider>
+      <Preloader />
+      <AppRoutes />
+    </CartProvider>
+  );
+}

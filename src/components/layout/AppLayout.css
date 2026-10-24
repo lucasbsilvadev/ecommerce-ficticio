@@ -1,0 +1,41 @@
+.app-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+.app-layout__main {
+  flex: 1;
+}
+
+.app-layout__footer {
+  padding: var(--sp-4) var(--sp-4) var(--sp-5);
+  text-align: center;
+  color: var(--color-text-muted);
+  font-size: var(--fs-xs);
+  border-top: 1px solid var(--color-border);
+  background: var(--color-surface);
+}
+.app-layout__footer-note {
+  margin: 0 0 var(--sp-2);
+}
+.app-layout__footer-links {
+  display: inline-flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.app-layout__footer-item {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--sp-2);
+}
+.app-layout__footer-links button {
+  background: transparent;
+  border: none;
+  padding: 0;
+  color: var(--color-brand-strong);
+  font-size: var(--fs-xs);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}

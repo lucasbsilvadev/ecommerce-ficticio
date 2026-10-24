@@ -1,0 +1,28 @@
+.cat-filter {
+  display: flex;
+  gap: var(--sp-2);
+  overflow-x: auto;
+  padding: var(--sp-2) var(--sp-4);
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+}
+.cat-filter::-webkit-scrollbar { display: none; }
+
+.cat-filter__btn {
+  flex-shrink: 0;
+  background: var(--color-surface);
+  color: var(--color-brand-strong);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 8px var(--sp-4);
+  font-size: var(--fs-sm);
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  min-height: 36px;
+}
+.cat-filter__btn:hover { background: var(--color-brand-soft); }
+.cat-filter__btn.is-active {
+  background: var(--color-brand);
+  color: var(--color-text-inverse);
+  border-color: var(--color-brand);
+}

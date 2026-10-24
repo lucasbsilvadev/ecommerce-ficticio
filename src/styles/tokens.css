@@ -1,0 +1,60 @@
+/* Design tokens — fonte única de verdade visual */
+:root {
+  /* Marca — identidade amarelo / azul / branco (pré-manual) */
+  --color-brand: #1e40af;         /* azul principal */
+  --color-brand-strong: #1e3a8a;  /* azul hover/ênfase */
+  --color-brand-soft: #dbeafe;    /* azul claro para fundos suaves */
+  --color-accent: #facc15;        /* amarelo de destaque */
+  --color-accent-strong: #a16207; /* amarelo escuro p/ texto sobre amarelo */
+
+  /* Superfícies */
+  --color-bg: #f8fafc;            /* branco levemente azulado */
+  --color-surface: #ffffff;
+  --color-surface-2: #f1f5f9;
+  --color-border: #e2e8f0;
+
+  /* Texto */
+  --color-text: #0f172a;          /* quase preto azulado */
+  --color-text-muted: #64748b;
+  --color-text-inverse: #ffffff;
+  --color-text-on-accent: #111111; /* texto escuro sobre amarelo */
+
+  /* Estados */
+  --color-success: #16a34a;
+  --color-danger: #dc2626;
+  --color-warning: #b45309;
+
+  /* Tipografia */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --fs-xs: 12px;
+  --fs-sm: 14px;
+  --fs-md: 16px;
+  --fs-lg: 18px;
+  --fs-xl: 22px;
+  --fs-2xl: 28px;
+
+  /* Espaçamento */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 12px;
+  --sp-4: 16px;
+  --sp-5: 24px;
+  --sp-6: 32px;
+
+  /* Bordas e sombras */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+  --shadow-sm: 0 1px 3px rgba(15, 23, 42, .06), 0 1px 2px rgba(15, 23, 42, .04);
+  --shadow-md: 0 4px 12px rgba(15, 23, 42, .08);
+  --shadow-lg: 0 12px 32px rgba(15, 23, 42, .12);
+
+  /* Transições */
+  --transition-fast: 120ms ease;
+  --transition: 200ms ease;
+
+  /* Layout */
+  --container-max: 1100px;
+  --tap-min: 44px;
+}
