@@ -1,0 +1,99 @@
+.catalog-header {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--color-bg); /* Ou branco, dependendo do fundo da sua app */
+  border-bottom: 1px solid var(--color-border);
+  padding: var(--sp-3) var(--sp-4) 0;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+}
+
+.catalog-header__top {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-3);
+  padding-bottom: var(--sp-3);
+}
+
+@media (min-width: 768px) {
+  .catalog-header__top {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.catalog-header__title {
+  margin: 0;
+  font-size: var(--fs-xl);
+  font-weight: 800;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+}
+
+.catalog-header__search {
+  display: flex;
+  align-items: center;
+  gap: var(--sp-2);
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-pill);
+  padding: 0 var(--sp-3);
+  height: 44px;
+  width: 100%;
+  max-width: 400px; /* Não deixa a barra ficar gigante no desktop */
+  transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.catalog-header__search:focus-within {
+  border-color: var(--color-brand);
+  box-shadow: 0 0 0 3px var(--color-brand-soft);
+}
+
+.catalog-header__search-icon {
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+}
+
+.catalog-header__search input {
+  flex: 1;
+  border: none;
+  background: transparent;
+  font: inherit;
+  font-size: var(--fs-sm);
+  color: var(--color-text);
+  outline: none;
+  min-width: 0;
+}
+
+.catalog-header__search input::-webkit-search-cancel-button {
+  display: none;
+}
+
+.catalog-header__search-clear {
+  background: var(--color-surface-2);
+  border: none;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-muted);
+  flex-shrink: 0;
+  cursor: pointer;
+}
+
+.catalog-header__search-clear:hover {
+  background: var(--color-brand-soft);
+  color: var(--color-brand-strong);
+}
+
+/* Ajuste fino no CategoryFilter para ele se integrar ao header */
+.catalog-header__nav {
+  margin: 0 calc(var(--sp-4) * -1); /* Puxa pro limite da tela para o scroll ficar elegante */
+}
+.catalog-header__nav .cat-filter {
+  padding-top: 0;
+  padding-bottom: var(--sp-2);
+}

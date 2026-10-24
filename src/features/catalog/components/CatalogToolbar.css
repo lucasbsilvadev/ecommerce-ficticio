@@ -1,0 +1,40 @@
+.catalog-toolbar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-2);
+  padding: var(--sp-3) var(--sp-4);
+  background: var(--color-bg);
+}
+
+@media (min-width: 768px) {
+  .catalog-toolbar {
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
+.catalog-toolbar__info {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  font-weight: 500;
+}
+
+/* Como o SubcategoryFilter já tem o CSS dele, só ajustamos o container */
+.catalog-toolbar__subcats {
+  margin: 0 calc(var(--sp-4) * -1); /* Scroll bleeding no mobile */
+}
+
+@media (min-width: 768px) {
+  .catalog-toolbar__subcats {
+    margin: 0;
+  }
+}
+
+/* Sobrescreve levemente o subcat-filter para ficar mais "inline" no desktop */
+.catalog-toolbar__subcats .subcat-filter {
+  padding-top: 0;
+  padding-bottom: 0;
+  background: transparent;
+  border: none;
+}

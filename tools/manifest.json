@@ -1,0 +1,478 @@
+{
+  "_meta": {
+    "version": 1
+  },
+  "batches": {
+    "cervejas-lote-01": {
+      "label": "Lote de Cervejas",
+      "source_dir": "bruto/cervejas",
+      "products": [
+        {
+          "id": "amstel-269ml",
+          "name": "Amstel 269Ml",
+          "category": "cervejas",
+          "kind": "can",
+          "raw": "cervejas/lata/amstel-269ml.jpeg",
+          "target": "cervejas/amstel-269ml.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "antarctica-269ml",
+          "name": "Antarctica 269Ml",
+          "category": "cervejas",
+          "kind": "can",
+          "raw": "cervejas/lata/antarctica-269ml.jpeg",
+          "target": "cervejas/antarctica-269ml.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "itaipava-269ml",
+          "name": "Itaipava 269Ml",
+          "category": "cervejas",
+          "kind": "can",
+          "raw": "cervejas/lata/itaipava-269ml.jpeg",
+          "target": "cervejas/itaipava-269ml.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "amstel-350ml",
+          "name": "Amstel 350Ml",
+          "category": "cervejas",
+          "kind": "pack",
+          "raw": "cervejas/latão/amstel-350ml.jpeg",
+          "target": "cervejas/amstel-350ml.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "heineken-350ml",
+          "name": "Heineken 350Ml",
+          "category": "cervejas",
+          "kind": "pack",
+          "raw": "cervejas/latão/heineken-350ml.jpeg",
+          "target": "cervejas/heineken-350ml.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "kaiser-350ml",
+          "name": "Kaiser 350Ml",
+          "category": "cervejas",
+          "kind": "pack",
+          "raw": "cervejas/latão/kaiser-350ml.jpeg",
+          "target": "cervejas/kaiser-350ml.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "spaten-250ml",
+          "name": "Spaten 250Ml",
+          "category": "cervejas",
+          "kind": "pack",
+          "raw": "cervejas/latão/spaten-250ml.jpeg",
+          "target": "cervejas/spaten-250ml.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "heineken-long-neck",
+          "name": "Heineken Long Neck",
+          "category": "cervejas",
+          "kind": "bottle",
+          "raw": "cervejas/long-neck/heineken-long-neck.jpeg",
+          "target": "cervejas/heineken-long-neck.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "stella-artois-pack",
+          "name": "Stella Artois Pack",
+          "category": "cervejas",
+          "kind": "box",
+          "raw": "cervejas/long-neck/stella-artouis-long-neck.jpeg",
+          "target": "cervejas/stella-artois-pack.png",
+          "bbox": [
+            0.12,
+            0.18,
+            0.76,
+            0.72
+          ],
+          "skip_ai": true,
+          "needs_review": true,
+          "strategy": "forced_crop"
+        },
+        {
+          "id": "coronita",
+          "name": "Coronita",
+          "category": "cervejas",
+          "kind": "pack",
+          "raw": "cervejas/shot/coronita.jpeg",
+          "target": "cervejas/coronita.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "heineken-shot",
+          "name": "Heineken Shot",
+          "category": "cervejas",
+          "kind": "bottle",
+          "raw": "cervejas/shot/heineken-shot.jpeg",
+          "target": "cervejas/heineken-shot.png",
+          "needs_review": true,
+          "strategy": "ai"
+        }
+      ]
+    },
+    "chopp-de-vinho-lote-01": {
+      "label": "Lote de Chopp-de-vinho",
+      "source_dir": "bruto/chopp-de-vinho",
+      "products": [
+        {
+          "id": "campo-largo",
+          "name": "Campo Largo",
+          "category": "chopp-de-vinho",
+          "kind": "can",
+          "raw": "chopp-de-vinho/campo-largo.jpeg",
+          "target": "chopp-de-vinho/campo-largo.png",
+          "needs_review": true,
+          "strategy": "ai"
+        }
+      ]
+    },
+    "cigarros-lote-01": {
+      "label": "Lote de Cigarros",
+      "source_dir": "bruto/cigarros",
+      "products": [
+        {
+          "id": "carlton-bruto",
+          "name": "Carlton Bruto",
+          "category": "cigarros",
+          "kind": "can",
+          "raw": "cigarros/carlton-bruto.jpeg",
+          "target": "cigarros/carlton-bruto.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "lucky-strike-fresh-double-ice",
+          "name": "Lucky Strike Fresh Double Ice",
+          "category": "cigarros",
+          "kind": "can",
+          "raw": "cigarros/lucky-strike-fresh-double-ice.jpeg",
+          "target": "cigarros/lucky-strike-fresh-double-ice.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "marlboro-gold-selection",
+          "name": "Marlboro Gold Selection",
+          "category": "cigarros",
+          "kind": "can",
+          "raw": "cigarros/marlboro-gold-selection.jpeg",
+          "target": "cigarros/marlboro-gold-selection.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "marlboro-red-selection",
+          "name": "Marlboro Red Selection",
+          "category": "cigarros",
+          "kind": "can",
+          "raw": "cigarros/marlboro-red-selection.jpeg",
+          "target": "cigarros/marlboro-red-selection.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "minister-azul-bruto",
+          "name": "Minister Azul Bruto",
+          "category": "cigarros",
+          "kind": "can",
+          "raw": "cigarros/minister-azul-bruto.jpeg",
+          "target": "cigarros/minister-azul-bruto.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "minister-vermelho-bruto",
+          "name": "Minister Vermelho Bruto",
+          "category": "cigarros",
+          "kind": "can",
+          "raw": "cigarros/minister-vermelho-bruto.jpeg",
+          "target": "cigarros/minister-vermelho-bruto.png",
+          "needs_review": true,
+          "strategy": "ai"
+        }
+      ]
+    },
+    "combo-lote-01": {
+      "label": "Lote de Combo",
+      "source_dir": "bruto/combo",
+      "products": [
+        {
+          "id": "combo-orloff-tradicional",
+          "name": "Combo Orloff Tradicional",
+          "category": "combo",
+          "kind": "combo",
+          "raw": "combo/orloff/tradicional/combo-orloff-tradicional.jpeg",
+          "target": "combo/combo-orloff-tradicional.png",
+          "needs_review": true,
+          "strategy": "ai"
+        }
+      ]
+    },
+    "gin-lote-01": {
+      "label": "Lote de Gin",
+      "source_dir": "bruto/gin",
+      "products": [
+        {
+          "id": "gin-rocks",
+          "name": "Gin Rocks",
+          "category": "gin",
+          "kind": "can",
+          "raw": "gin/gin-rocks.jpeg",
+          "target": "gin/gin-rocks.png",
+          "needs_review": true,
+          "strategy": "ai"
+        }
+      ]
+    },
+    "sem-alcool-lote-01": {
+      "label": "Lote de Sem-alcool",
+      "source_dir": "bruto/sem-alcool",
+      "products": [
+        {
+          "id": "coca-cola-2l",
+          "name": "Coca Cola 2L",
+          "category": "sem-alcool",
+          "kind": "can",
+          "raw": "sem-alcool/2 litros/coca-cola-2l.jpeg",
+          "target": "sem-alcool/coca-cola-2l.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "fanta-laranja-2l",
+          "name": "Fanta Laranja 2L",
+          "category": "sem-alcool",
+          "kind": "can",
+          "raw": "sem-alcool/2 litros/fanta-laranja-2l.jpeg",
+          "target": "sem-alcool/fanta-laranja-2l.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "fanta-uva-2l",
+          "name": "Fanta Uva 2L",
+          "category": "sem-alcool",
+          "kind": "can",
+          "raw": "sem-alcool/2 litros/fanta-uva-2l.jpeg",
+          "target": "sem-alcool/fanta-uva-2l.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "guarana-antarctica-2l",
+          "name": "Guarana Antarctica 2L",
+          "category": "sem-alcool",
+          "kind": "can",
+          "raw": "sem-alcool/2 litros/guarana-antarctica-2l.jpeg",
+          "target": "sem-alcool/guarana-antarctica-2l.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "mineiro-2l",
+          "name": "Mineiro 2L",
+          "category": "sem-alcool",
+          "kind": "can",
+          "raw": "sem-alcool/2 litros/mineiro-2l.jpeg",
+          "target": "sem-alcool/mineiro-2l.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "sprite-2l",
+          "name": "Sprite 2L",
+          "category": "sem-alcool",
+          "kind": "can",
+          "raw": "sem-alcool/2 litros/sprite-2l.jpeg",
+          "target": "sem-alcool/sprite-2l.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "agua-de-coco-1l",
+          "name": "Agua De Coco 1L",
+          "category": "sem-alcool",
+          "kind": "can",
+          "raw": "sem-alcool/agua/coco/agua-de-coco-1l.jpeg",
+          "target": "sem-alcool/agua-de-coco-1l.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "baly-tradicional",
+          "name": "Baly Tradicional",
+          "category": "sem-alcool",
+          "kind": "can",
+          "raw": "sem-alcool/energeticos/2 litros/baly-tradicional.jpeg",
+          "target": "sem-alcool/baly-tradicional.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "monster-tradicional",
+          "name": "Monster Tradicional",
+          "category": "sem-alcool",
+          "kind": "can",
+          "raw": "sem-alcool/energeticos/lata/monster-tradicional.jpeg",
+          "target": "sem-alcool/monster-tradicional.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "gatorade-blueberry",
+          "name": "Gatorade Blueberry",
+          "category": "sem-alcool",
+          "kind": "can",
+          "raw": "sem-alcool/gatorade/gatorade-blueberry.jpeg",
+          "target": "sem-alcool/gatorade-blueberry.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "h20-limao-1-5l",
+          "name": "H20 Limao 1,5L",
+          "category": "sem-alcool",
+          "kind": "can",
+          "raw": "sem-alcool/h2o/h20-limao-1,5l.jpeg",
+          "target": "sem-alcool/h20-limao-1-5l.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "h2o-limoneto-600ml",
+          "name": "H2O Limoneto 600Ml",
+          "category": "sem-alcool",
+          "kind": "can",
+          "raw": "sem-alcool/h2o/h2o-limoneto-600ml.jpeg",
+          "target": "sem-alcool/h2o-limoneto-600ml.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "coca-cola-lata",
+          "name": "Coca Cola Lata",
+          "category": "sem-alcool",
+          "kind": "can",
+          "raw": "sem-alcool/lata/coca-cola-lata.jpeg",
+          "target": "sem-alcool/coca-cola-lata.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "fanta-laranja-lata",
+          "name": "Fanta Laranja Lata",
+          "category": "sem-alcool",
+          "kind": "can",
+          "raw": "sem-alcool/lata/fanta-laranja-lata.jpeg",
+          "target": "sem-alcool/fanta-laranja-lata.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "fanta-uva-lata",
+          "name": "Fanta Uva Lata",
+          "category": "sem-alcool",
+          "kind": "can",
+          "raw": "sem-alcool/lata/fanta-uva-lata.jpeg",
+          "target": "sem-alcool/fanta-uva-lata.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "sprite-lata",
+          "name": "Sprite Lata",
+          "category": "sem-alcool",
+          "kind": "can",
+          "raw": "sem-alcool/lata/sprite-lata.jpeg",
+          "target": "sem-alcool/sprite-lata.png",
+          "needs_review": true,
+          "strategy": "ai"
+        }
+      ]
+    },
+    "tabacaria-lote-01": {
+      "label": "Lote de Tabacaria",
+      "source_dir": "bruto/tabacaria",
+      "products": [
+        {
+          "id": "essencia-ziggy-cherry",
+          "name": "Essencia Ziggy Cherry",
+          "category": "tabacaria",
+          "kind": "can",
+          "raw": "tabacaria/essência/essencia-ziggy-cherry.jpeg",
+          "target": "tabacaria/essencia-ziggy-cherry.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "essencia-ziggy-hapocalyx-mint",
+          "name": "Essencia Ziggy Hapocalyx Mint",
+          "category": "tabacaria",
+          "kind": "can",
+          "raw": "tabacaria/essência/essencia-ziggy-hapocalyx-mint.jpeg",
+          "target": "tabacaria/essencia-ziggy-hapocalyx-mint.png",
+          "needs_review": true,
+          "strategy": "ai"
+        },
+        {
+          "id": "seda-zomo",
+          "name": "Seda Zomo",
+          "category": "tabacaria",
+          "kind": "flat",
+          "raw": "tabacaria/seda/seda-zomo.jpeg",
+          "target": "tabacaria/seda-zomo.png",
+          "needs_review": true,
+          "strategy": "ai"
+        }
+      ]
+    },
+    "vinho-lote-01": {
+      "label": "Lote de Vinho",
+      "source_dir": "bruto/vinho",
+      "products": [
+        {
+          "id": "pergola",
+          "name": "Pergola",
+          "category": "vinho",
+          "kind": "can",
+          "raw": "vinho/pergola.jpeg",
+          "target": "vinho/pergola.png",
+          "needs_review": true,
+          "strategy": "ai"
+        }
+      ]
+    },
+    "vodka-lote-01": {
+      "label": "Lote de Vodka",
+      "source_dir": "bruto/vodka",
+      "products": [
+        {
+          "id": "orloff",
+          "name": "Orloff",
+          "category": "vodka",
+          "kind": "can",
+          "raw": "vodka/orloff.jpeg",
+          "target": "vodka/orloff.png",
+          "needs_review": true,
+          "strategy": "ai"
+        }
+      ]
+    }
+  }
+}

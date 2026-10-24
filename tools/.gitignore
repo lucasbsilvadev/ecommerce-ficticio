@@ -1,0 +1,4 @@
+# Ferramentas locais de processamento de imagem (Pipeline Python)
+/tools/
+__pycache__/
+*.pyc

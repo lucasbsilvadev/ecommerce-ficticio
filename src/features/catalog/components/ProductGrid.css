@@ -1,3 +1,6 @@
+/* =========================================
+   GRID PADRÃO (Modo lista plana)
+   ========================================= */
 .product-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -10,9 +13,85 @@
 @media (min-width: 900px) {
   .product-grid { grid-template-columns: repeat(4, 1fr); }
 }
+
 .product-grid__empty {
   grid-column: 1 / -1;
   text-align: center;
   padding: var(--sp-6) var(--sp-4);
   color: var(--color-text-muted);
+}
+
+/* =========================================
+   SEÇÕES EDITORIAIS (Modo agrupado)
+   ========================================= */
+.product-sections {
+  padding: var(--sp-4) 0 var(--sp-6);
+}
+
+.product-section {
+  margin-bottom: var(--sp-6); /* Respiro maior entre os blocos */
+}
+.product-section:last-child {
+  margin-bottom: 0;
+}
+
+/* Header da seção: Título + Linha divisória */
+.product-section__header {
+  padding: 0 var(--sp-4);
+  margin-bottom: var(--sp-3);
+}
+
+.product-section__heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: var(--sp-2);
+}
+
+.product-section__title {
+  margin: 0;
+  font-size: var(--fs-lg);
+  font-weight: 700;
+  color: var(--color-text);
+  letter-spacing: -0.02em;
+  /* Truque sutil: linha dourada/accent embaixo do título */
+  position: relative;
+  display: inline-block;
+}
+
+.product-section__title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 32px;
+  height: 2px;
+  background-color: var(--color-accent); /* Usando o amarelo da marca */
+  border-radius: 2px;
+}
+
+.product-section__count {
+  font-size: var(--fs-xs);
+  color: var(--color-text-muted);
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* A linha divisória que preenche o espaço */
+.product-section__divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    var(--color-border) 0%,
+    var(--color-border) 70%,
+    transparent 100%
+  );
+  margin-top: var(--sp-2);
+}
+
+/* O grid dentro da seção não precisa de padding lateral extra,
+   já que o header acima já tem */
+.product-section .product-grid {
+  padding-top: 0;
 }

@@ -1,0 +1,6 @@
+Pillow>=10.0
+numpy>=1.26
+opencv-python>=4.9
+imagehash>=4.3
+rembg[cpu]>=2.0.50
+scikit-image>=0.22.0
